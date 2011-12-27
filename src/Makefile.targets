@@ -1,0 +1,88 @@
+##    Copyright (C) 2011 Oleg Kertanov <okertanov@gmail.com>
+##    All rights reserved.
+
+#
+# Common targets
+#
+ifdef MODULES
+
+all: $(MODULES)
+	@for dir in $(MODULES); do ($(MAKE) --no-print-directory $@ -C $$dir); done
+
+clean:
+	@for dir in $(MODULES); do ($(MAKE) --no-print-directory $@ -C $$dir); done
+
+else
+
+all: pre-build targets
+
+ifndef OBJECTS
+ifdef SOURCES
+OBJECTS := $(patsubst %$(CPP_EXT),$(BUILD_DIR)/%$(OBJ_EXT),$(SOURCES))
+endif
+ifdef SOURCES_C
+OBJECTS += $(patsubst %$(C_EXT),$(BUILD_DIR)/%$(OBJ_EXT),$(SOURCES_C))
+endif
+endif
+
+ifdef TARGETS
+targets: $(TARGETS)
+
+$(TARGETS): $(OBJECTS)
+endif
+
+pre-build:
+	-@echo Building the $(MODULE_NAME) module for $(TARGET_PLATFORM) on $(HOST_PLATFORM)\($(HOST_SYSTEM)\)
+
+clean:
+	-@$(RM) $(BUILD_DIR)/*.o $(BUILD_DIR)/*.obj $(BUILD_DIR)/*.a $(BUILD_DIR)/*.exe $(BUILD_DIR)/*.elf \
+            $(BUILD_DIR)/*.hex $(BUILD_DIR)/*.bin $(BUILD_DIR)/*.lst $(BUILD_DIR)/*.map $(BUILD_DIR)/a.out
+	-@$(RM) $(CLEAN_MORE)
+
+endif
+
+#
+# Pattern rules
+#
+%$(OBJ_EXT): %$(CPP_EXT)
+	$(CXX) $(CXX_CFLAGS) -c $< -o $@
+
+%$(OBJ_EXT): %$(C_EXT)
+	$(CC) $(C_CFLAGS) -c $< -o $@
+
+%$(ARCH_EXT):
+	$(AR) rs $@ $?
+
+%$(HEX_EXT):
+	$(OBJCOPY) -v --strip-all -O ihex $< $@
+	$(OBJCOPY) -v --strip-all -O binary $< $<.bin
+	$(OBJDUMP) -S $< > $<$(LST_EXT)
+
+#
+# Pattern rules (build_dir)
+#
+$(BUILD_DIR)/%$(OBJ_EXT): %$(CPP_EXT)
+	$(CXX) $(CXX_CFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/%$(OBJ_EXT): %$(C_EXT)
+	$(CC) $(C_CFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/%$(ARCH_EXT):
+	$(AR) rs $@ $?
+
+$(BUILD_DIR)/%$(HEX_EXT):
+	$(OBJCOPY) -v --strip-all -O ihex $< $@
+	$(OBJCOPY) -v --strip-all -O binary $< $<.bin
+	$(OBJDUMP) -S $< > $<$(LST_EXT)
+
+#
+# Control targets
+#
+.DEFAULT: all
+
+.PHONY: all clean
+
+.SILENT: clean
+
+.SUFFIXES: $(CPP_EXT) $(C_EXT) $(OBJ_EXT) $(ARCH_EXT) $(SO_EXT) $(HEX_EXT) $(LST_EXT)
+

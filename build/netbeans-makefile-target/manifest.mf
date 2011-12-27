@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+OpenIDE-Module: com.espectrale.nb.makefile
+OpenIDE-Module-Localizing-Bundle: com/espectrale/nb/makefile/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+

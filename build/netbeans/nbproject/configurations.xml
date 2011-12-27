@@ -1,0 +1,752 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="80">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <df name="VelaOS" root="../..">
+      <df name="bin">
+      </df>
+      <df name="build">
+        <df name="debian">
+        </df>
+        <df name="eclipse">
+        </df>
+        <df name="msvc">
+        </df>
+        <df name="netbeans">
+        </df>
+        <df name="netbeans-makefile-target">
+          <df name="build">
+            <df name="classes">
+              <df name="com">
+                <df name="espectrale">
+                  <df name="nb">
+                    <df name="makefile">
+                    </df>
+                  </df>
+                </df>
+              </df>
+              <df name="META-INF">
+              </df>
+            </df>
+            <df name="classes-generated">
+              <df name="com">
+                <df name="espectrale">
+                  <df name="nb">
+                    <df name="makefile">
+                    </df>
+                  </df>
+                </df>
+              </df>
+            </df>
+            <df name="cluster">
+              <df name="config">
+                <df name="Modules">
+                </df>
+              </df>
+              <df name="modules">
+              </df>
+              <df name="update_tracking">
+              </df>
+            </df>
+            <df name="depcache">
+            </df>
+            <df name="public-package-jars">
+            </df>
+          </df>
+          <df name="src">
+            <df name="com">
+              <df name="espectrale">
+                <df name="nb">
+                  <df name="makefile">
+                  </df>
+                </df>
+              </df>
+            </df>
+          </df>
+        </df>
+        <df name="xcode">
+        </df>
+      </df>
+      <df name="doc">
+      </df>
+      <df name="src">
+        <df name="api">
+          <in>VelaOS.cpp</in>
+          <in>VelaOS.h</in>
+        </df>
+        <df name="boot">
+        </df>
+        <df name="core">
+          <in>ABI.cpp</in>
+          <in>ABI.h</in>
+          <in>Concurrent.cpp</in>
+          <in>Concurrent.h</in>
+          <in>Debug.cpp</in>
+          <in>Debug.h</in>
+          <in>Error.cpp</in>
+          <in>Error.h</in>
+          <in>Fiber.cpp</in>
+          <in>Fiber.h</in>
+          <in>Interpreter.cpp</in>
+          <in>Interpreter.h</in>
+          <in>Ipc.cpp</in>
+          <in>Ipc.h</in>
+          <in>Language.cpp</in>
+          <in>Language.h</in>
+          <in>Log.cpp</in>
+          <in>Log.h</in>
+          <in>Memory.cpp</in>
+          <in>Memory.h</in>
+          <in>Platform.cpp</in>
+          <in>Platform.h</in>
+          <in>PlatformDefs.h</in>
+          <in>Runtime.cpp</in>
+          <in>Runtime.h</in>
+          <in>Scheduler.cpp</in>
+          <in>Scheduler.h</in>
+          <in>String.cpp</in>
+          <in>String.h</in>
+          <in>Task.cpp</in>
+          <in>Task.h</in>
+          <in>Types.cpp</in>
+          <in>Types.h</in>
+        </df>
+        <df name="pal">
+          <df name="posix">
+            <in>PosixPlatform.cpp</in>
+            <in>PosixPlatform.h</in>
+          </df>
+          <df name="Posix">
+            <in>PosixPlatform.cpp</in>
+            <in>PosixPlatform.h</in>
+          </df>
+          <df name="stm32">
+            <df name="linker">
+            </df>
+            <df name="misc">
+              <in>crumpet.cpp</in>
+              <in>syscalls.c</in>
+              <in>unwind-arm.c</in>
+            </df>
+            <in>STM32Platform.cpp</in>
+            <in>STM32Platform.h</in>
+          </df>
+          <df name="STM32">
+            <df name="linker">
+              <in>STM32F407VG_flash.ld</in>
+              <in>STM32F407VG_ram.ld</in>
+              <in>tmpl-stm32_flash.ld</in>
+              <in>tmpl-stm32_ram.ld</in>
+            </df>
+            <df name="misc">
+              <in>syscalls.c</in>
+              <in>unwind-arm.c</in>
+            </df>
+            <in>STM32Platform.cpp</in>
+            <in>STM32Platform.h</in>
+          </df>
+          <df name="Win32">
+            <in>Win32Platform.cpp</in>
+            <in>Win32Platform.h</in>
+          </df>
+        </df>
+        <df name="qa">
+          <in>test-init.cpp</in>
+          <in>test-leds.cpp</in>
+          <in>test-log.cpp</in>
+          <in>test-micro.c</in>
+          <in>test-mini.cpp</in>
+          <in>test-tasks.cpp</in>
+        </df>
+      </df>
+    </df>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>../../Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceFolderFilter>^(nbproject)$</sourceFolderFilter>
+  <sourceRootList>
+    <Elem>../..</Elem>
+  </sourceRootList>
+  <projectmakefile>../../Makefile</projectmakefile>
+  <confs>
+    <conf name="Posix-Debug" type="0">
+      <toolsSet>
+        <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
+        <compilerSet>GNU|GNU</compilerSet>
+      </toolsSet>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>../..</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile TARGET=Posix DEBUG=1</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath>../../bin/test-init</executablePath>
+          <ccTool>
+            <incDir>
+              <pElem>../../src</pElem>
+            </incDir>
+            <preprocessorList>
+              <Elem>DEBUG</Elem>
+              <Elem>_FORTIFY_SOURCE=2</Elem>
+            </preprocessorList>
+          </ccTool>
+        </makeTool>
+      </makefileType>
+      <packaging>
+        <packType>Debian</packType>
+        <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/VelaOS-Posix.deb</output>
+        <packFileList>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+        </packFileList>
+        <packInfoList>
+          <packInfoListElem name="Package" value="VelaOS" mandatory="true"/>
+          <packInfoListElem name="Version" value="1.0" mandatory="true"/>
+          <packInfoListElem name="Architecture" value="i386" mandatory="false"/>
+          <packInfoListElem name="Maintainer"
+                            value="Oleg Kertanov &lt;okertanov@gmail.com>"
+                            mandatory="false"/>
+          <packInfoListElem name="Description"
+                            value="VelaOS is the embedded OS project mainly focused on STM32 CortexM3/M4 Platform."
+                            mandatory="false"/>
+        </packInfoList>
+      </packaging>
+      <item path="../../src/core/ABI.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>TARGET_PLATFORM=Posix</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="../../src/core/Concurrent.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>TARGET_PLATFORM=Posix</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="../../src/core/Debug.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>TARGET_PLATFORM=Posix</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="../../src/core/Error.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>TARGET_PLATFORM=Posix</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="../../src/core/Fiber.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>TARGET_PLATFORM=Posix</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="../../src/core/Interpreter.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>TARGET_PLATFORM=Posix</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="../../src/core/Ipc.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>TARGET_PLATFORM=Posix</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="../../src/core/Language.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>TARGET_PLATFORM=Posix</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="../../src/core/Log.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>TARGET_PLATFORM=Posix</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="../../src/core/Memory.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>TARGET_PLATFORM=Posix</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="../../src/core/Platform.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>TARGET_PLATFORM=Posix</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="../../src/core/Runtime.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>TARGET_PLATFORM=Posix</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="../../src/core/String.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>TARGET_PLATFORM=Posix</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="../../src/core/Task.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>TARGET_PLATFORM=Posix</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="../../src/core/Types.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>TARGET_PLATFORM=Posix</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="../../src/pal/posix/PosixPlatform.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="../../src/pal/stm32/STM32Platform.h" ex="true" tool="3" flavor="0">
+      </item>
+      <folder path="VelaOS/src/api">
+        <ccTool>
+          <preprocessorList>
+            <Elem>TARGET_PLATFORM=Posix</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+      <folder path="VelaOS/src/qa">
+        <ccTool>
+          <preprocessorList>
+            <Elem>TARGET_PLATFORM=Posix</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+    </conf>
+    <conf name="Posix-Release" type="0">
+      <toolsSet>
+        <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
+        <compilerSet>default</compilerSet>
+      </toolsSet>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>../..</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile TARGET=Posix</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath>../../bin/test-init</executablePath>
+          <ccTool>
+            <incDir>
+              <pElem>../../src</pElem>
+            </incDir>
+            <preprocessorList>
+              <Elem>DEBUG</Elem>
+              <Elem>_FORTIFY_SOURCE=2</Elem>
+            </preprocessorList>
+          </ccTool>
+        </makeTool>
+      </makefileType>
+      <packaging>
+        <packType>Debian</packType>
+        <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/VelaOS-Posix.deb</output>
+        <packFileList>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+        </packFileList>
+        <packInfoList>
+          <packInfoListElem name="Package" value="VelaOS" mandatory="true"/>
+          <packInfoListElem name="Version" value="1.0" mandatory="true"/>
+          <packInfoListElem name="Architecture" value="i386" mandatory="false"/>
+          <packInfoListElem name="Maintainer"
+                            value="Oleg Kertanov &lt;okertanov@gmail.com>"
+                            mandatory="false"/>
+          <packInfoListElem name="Description"
+                            value="VelaOS is the embedded OS project mainly focused on STM32 CortexM3/M4 Platform."
+                            mandatory="false"/>
+        </packInfoList>
+      </packaging>
+      <item path="../../src/core/Debug.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="../../src/core/Error.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="../../src/pal/posix/PosixPlatform.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="../../src/pal/stm32/STM32Platform.h" ex="true" tool="3" flavor="0">
+      </item>
+    </conf>
+    <conf name="Win32-Debug" type="0">
+      <toolsSet>
+        <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
+        <compilerSet>default</compilerSet>
+      </toolsSet>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>../..</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile TARGET=Win32 DEBUG=1</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath>../../bin/test-init.exe</executablePath>
+        </makeTool>
+      </makefileType>
+      <packaging>
+        <packType>Zip</packType>
+        <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/VelaOS-Win32.zip</output>
+        <packFileList>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+        </packFileList>
+      </packaging>
+      <item path="../../src/core/ABI.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <incDir>
+            <pElem>../../src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DEBUG</Elem>
+            <Elem>_FORTIFY_SOURCE=2</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="../../src/core/Concurrent.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <incDir>
+            <pElem>../../src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DEBUG</Elem>
+            <Elem>_FORTIFY_SOURCE=2</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="../../src/core/Debug.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <incDir>
+            <pElem>../../src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DEBUG</Elem>
+            <Elem>_FORTIFY_SOURCE=2</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="../../src/core/Error.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <incDir>
+            <pElem>../../src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DEBUG</Elem>
+            <Elem>_FORTIFY_SOURCE=2</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="../../src/core/Fiber.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <incDir>
+            <pElem>../../src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DEBUG</Elem>
+            <Elem>_FORTIFY_SOURCE=2</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="../../src/core/Interpreter.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <incDir>
+            <pElem>../../src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DEBUG</Elem>
+            <Elem>_FORTIFY_SOURCE=2</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="../../src/core/Ipc.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <incDir>
+            <pElem>../../src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DEBUG</Elem>
+            <Elem>_FORTIFY_SOURCE=2</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="../../src/core/Language.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <incDir>
+            <pElem>../../src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DEBUG</Elem>
+            <Elem>_FORTIFY_SOURCE=2</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="../../src/core/Log.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <incDir>
+            <pElem>../../src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DEBUG</Elem>
+            <Elem>_FORTIFY_SOURCE=2</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="../../src/core/Memory.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <incDir>
+            <pElem>../../src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DEBUG</Elem>
+            <Elem>_FORTIFY_SOURCE=2</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="../../src/core/Platform.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <incDir>
+            <pElem>../../src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DEBUG</Elem>
+            <Elem>_FORTIFY_SOURCE=2</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="../../src/core/Runtime.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <incDir>
+            <pElem>../../src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DEBUG</Elem>
+            <Elem>_FORTIFY_SOURCE=2</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="../../src/core/String.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <incDir>
+            <pElem>../../src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DEBUG</Elem>
+            <Elem>_FORTIFY_SOURCE=2</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="../../src/core/Task.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <incDir>
+            <pElem>../../src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DEBUG</Elem>
+            <Elem>_FORTIFY_SOURCE=2</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="../../src/core/Types.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <incDir>
+            <pElem>../../src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DEBUG</Elem>
+            <Elem>_FORTIFY_SOURCE=2</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="../../src/pal/posix/PosixPlatform.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="../../src/pal/stm32/STM32Platform.h" ex="true" tool="3" flavor="0">
+      </item>
+      <folder path="VelaOS/src/api">
+        <ccTool>
+          <incDir>
+            <pElem>../../src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DEBUG</Elem>
+            <Elem>_FORTIFY_SOURCE=2</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+      <folder path="VelaOS/src/qa">
+        <ccTool>
+          <incDir>
+            <pElem>../../src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DEBUG</Elem>
+            <Elem>_FORTIFY_SOURCE=2</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+    </conf>
+    <conf name="Win32-Release" type="0">
+      <toolsSet>
+        <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
+        <compilerSet>default</compilerSet>
+      </toolsSet>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>../..</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile TARGET=Win32</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath>../../bin/test-init.exe</executablePath>
+        </makeTool>
+      </makefileType>
+      <packaging>
+        <packType>Zip</packType>
+        <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/VelaOS-Win32.zip</output>
+        <packFileList>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+        </packFileList>
+      </packaging>
+    </conf>
+    <conf name="STM32-Debug" type="0">
+      <toolsSet>
+        <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
+        <compilerSet>ARM-GNU-EABI|GNU</compilerSet>
+      </toolsSet>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>../..</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile TARGET=STM32 DEBUG=1</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath></executablePath>
+        </makeTool>
+      </makefileType>
+      <packaging>
+        <packType>Zip</packType>
+        <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/VelaOS-STM32.zip</output>
+        <packFileList>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+        </packFileList>
+      </packaging>
+      <item path="../../src/core/Debug.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="../../src/core/Error.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="../../src/pal/posix/PosixPlatform.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="../../src/pal/stm32/STM32Platform.h" ex="true" tool="3" flavor="0">
+      </item>
+      <folder path="VelaOS/src/api">
+        <ccTool>
+          <incDir>
+            <pElem>../../src</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="VelaOS/src/core">
+        <ccTool>
+          <incDir>
+            <pElem>../../src</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="VelaOS/src/qa">
+        <ccTool>
+          <incDir>
+            <pElem>../..</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+    </conf>
+    <conf name="STM32-Release" type="0">
+      <toolsSet>
+        <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
+        <compilerSet>ARM-GNU-EABI|GNU</compilerSet>
+      </toolsSet>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>../..</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile TARGET=STM32</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath></executablePath>
+        </makeTool>
+      </makefileType>
+      <packaging>
+        <packType>Zip</packType>
+        <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/VelaOS-STM32.zip</output>
+        <packFileList>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+        </packFileList>
+      </packaging>
+      <item path="../../src/core/Debug.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="../../src/core/Error.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="../../src/pal/posix/PosixPlatform.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="../../src/pal/stm32/STM32Platform.h" ex="true" tool="3" flavor="0">
+      </item>
+      <folder path="VelaOS/src/api">
+        <ccTool>
+          <incDir>
+            <pElem>../../src</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="VelaOS/src/core">
+        <ccTool>
+          <incDir>
+            <pElem>../../src</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="VelaOS/src/qa">
+        <ccTool>
+          <incDir>
+            <pElem>../..</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+    </conf>
+  </confs>
+</configurationDescriptor>

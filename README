@@ -1,0 +1,41 @@
+VelaOS
+======
+
+Intro
+-----
+VelaOS is the embedded OS project mainly focused on STM32 CortexM3/M4 Platform.
+
+OS Naming
+---------
+* Vela
+* Cross
+* Carinae
+
+Project Requirements
+--------------------
+### Linux Host
+* build-essentials
+* arm-linux-gnueabi cross tools
+    g++-4.4-arm-linux-gnueabi
+    gcc-4.4-arm-linux-gnueabi
+    binutils-arm-linux-gnueabi
+    gdb-arm-linux-gnueabi
+
+### Windows Host
+* MinGW
+
+### OSX Host
+* Xcode4
+
+### STM32 Target
+* STM32F4-Discovery_FW_V1.0.1
+* STM32F4xx_DSP_StdPeriph_Lib_V1.0.0
+
+Building the projects
+---------------------
+
+TODO
+----
+* gptof
+* Valgrind
+

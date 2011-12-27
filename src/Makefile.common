@@ -1,0 +1,255 @@
+##    Copyright (C) 2011 Oleg Kertanov <okertanov@gmail.com>
+##    All rights reserved.
+
+#
+# Usage for the Makefiles based on this:
+#    make
+#    make clean all
+#
+#    make TARGET=Posix
+#    make TARGET=Win32
+#    make TARGET=STM32
+#
+#    make TARGET=STM32 DEBUG=1
+#    make TARGET=STM32 DEBUG=1 CROSS=arm-none-eabi-
+#    make TARGET=STM32 DEBUG=1 CROSS=arm-none-eabi- 2>&1 | vim -
+#
+
+#
+# Recursive build definitions
+#
+THIS_MAKEFILE := $(realpath $(lastword $(MAKEFILE_LIST)))
+MAKEFILE_DIR := $(dir $(THIS_MAKEFILE))
+TOP_DIR := $(realpath $(MAKEFILE_DIR)/../)
+MODULES_DIR := $(TOP_DIR)/src
+BUILD_DIR := $(TOP_DIR)/bin
+
+#
+# Host Platform detection
+#
+HOST_PLATFORM = Unknown
+HOST_SYSTEM = $(shell uname -s)
+ifneq (,$(findstring OSX,$(HOST_SYSTEM)))
+    HOST_PLATFORM=Posix
+endif
+ifneq (,$(findstring Linux,$(HOST_SYSTEM)))
+    HOST_PLATFORM=Posix
+endif
+ifneq (,$(findstring MINGW,$(HOST_SYSTEM)))
+    HOST_PLATFORM=Win32
+endif
+ifeq ($(HOST_PLATFORM),Unknown)
+stop build HOST_PLATFORM is undefined
+endif
+
+#
+# Target Platform detection
+#
+ifndef TARGET_PLATFORM
+    ifdef TARGET
+        TARGET_PLATFORM=$(TARGET)
+    endif
+endif
+ifndef TARGET
+    ifdef TARGET_PLATFORM
+        TARGET=$(TARGET_PLATFORM)
+    endif
+endif
+ifndef TARGET
+    TARGET=$(HOST_PLATFORM)
+    TARGET_PLATFORM=$(TARGET)
+endif
+
+#
+# Project definitions
+#
+PROJECT_NAME="VelaOS"
+
+#
+# Host Platform configuration
+#
+ifeq ($(HOST_PLATFORM),Posix)
+ARM_EABI_DIR:=$(MODULES_DIR)/pal/STM32/arm-none-eabi-4.5.2-$(HOST_PLATFORM)/thumb
+CROSS_DEFAULT:=arm-linux-gnueabi-
+endif
+ifeq ($(HOST_PLATFORM),Win32)
+ARM_EABI_DIR:=$(MODULES_DIR)/pal/STM32/arm-none-eabi-4.5.2-$(HOST_PLATFORM)/thumb
+CROSS_DEFAULT:=arm-linux-gnueabi-
+endif
+
+#
+# Cross-platform definitions
+#
+C_EXT=.c
+CPP_EXT=.cpp
+
+#
+# Cross tools prefix
+#
+ifdef CROSS
+CROSS_PREFIX:=$(CROSS)
+else
+CROSS_PREFIX:=$(CROSS_DEFAULT)
+endif
+
+#
+# Tartget Platform configuration
+#
+ifeq ($(TARGET_PLATFORM),Posix)
+MARCH=-DTARGET_POSIX=1 -march=i686 -mtune=i686
+CROSS=
+OBJ_EXT=.o
+ARCH_EXT=.a
+SO_EXT=.so
+EXEC_EXT=
+HEX_EXT=.hex
+LST_EXT=.lst
+TARGET_DEFINED=1
+endif
+ifeq ($(TARGET_PLATFORM),STM32)
+MARCH=-DTARGET_STM32=1 -DTARGET_EMBEDDED=1 -mtune=cortex-m3 -mlittle-endian -mthumb -mthumb-interwork
+CROSS=$(CROSS_PREFIX)
+OBJ_EXT=.o
+ARCH_EXT=.a
+SO_EXT=.so
+EXEC_EXT=.elf
+HEX_EXT=.hex
+LST_EXT=.lst
+EMBEDDED=1
+TARGET_DEFINED=1
+endif
+ifeq ($(TARGET_PLATFORM),Win32)
+MARCH=-DTARGET_WIN32=1 -march=native -mtune=native
+CROSS=
+OBJ_EXT=.obj
+ARCH_EXT=.a
+SO_EXT=.so
+EXEC_EXT=.exe
+HEX_EXT=.hex
+LST_EXT=.lst
+TARGET_DEFINED=1
+endif
+
+#
+# Sanity check
+#
+ifndef TARGET_DEFINED
+stop build TARGET_PLATFORM is undefined
+endif
+
+#
+# Build tools & cross-tools
+#
+CC=$(CROSS)gcc
+CXX=$(CROSS)g++
+AS=$(CROSS)as
+AR=$(CROSS)ar
+STRIP=$(CROSS)strip
+RANLIB=$(CROSS)ranlib
+OBJCOPY=$(CROSS)objcopy
+OBJDUMP=$(CROSS)objdump
+RM=rm -f
+MV=mv
+
+#
+# Build definitions
+#
+PROJECT_STATIC_LIBS  = $(BUILD_DIR)/libvelapal.a $(BUILD_DIR)/libvelacore.a $(BUILD_DIR)/libvelaapi.a
+PROJECT_DYNAMIC_LIBS = $(BUILD_DIR)/libvelacore.so $(BUILD_DIR)/libvelaapi.so
+
+COMMON_C_CFLAGS     = -I$(MODULES_DIR) -Wall -Wextra -Wcast-align -Wundef -Wno-variadic-macros -std=gnu99
+COMMON_CXX_CFLAGS   = -I$(MODULES_DIR) -Wall -Wextra -Wcast-align -Wundef -Wno-variadic-macros -std=c++0x
+COMMON_C_LDFLAGS    = -L$(BUILD_DIR)
+COMMON_CXX_LDFLAGS  = -L$(BUILD_DIR)
+
+ADDITIONAL_CFLAGS := $(MARCH) -D_FORTIFY_SOURCE=2 -pipe -fno-common
+ADDITIONAL_CXXFLAGS := $(MARCH) -D_FORTIFY_SOURCE=2 -pipe -fno-common
+
+DEBUG_CFLAGS=-g -DDEBUG
+DEBUG_CXXFLAGS=-g -DDEBUG
+RELEASE_CFLAGS=-Os -fomit-frame-pointer -DNDEBUG
+RELEASE_CXXFLAGS=-Os -fomit-frame-pointer -DNDEBUG
+
+EMBEDDED_CFLAGS :=
+EMBEDDED_CXXFLAGS :=
+EMBEDDED_C_LDFLAGS :=   -T$(MODULES_DIR)/pal/STM32/linker/STM32F407VG_flash.ld           \
+                           -static -fno-rtti -fno-exceptions -fno-stack-protector        \
+                           -fno-stack-check -fno-bounds-check -fno-non-call-exceptions   \
+                           -fno-unwind-tables -fconserve-space                           \
+                           -nostdinc -nostdinc++ -nostdlib -nodefaultlibs -nostartfiles
+EMBEDDED_CXX_LDFLAGS := -T$(MODULES_DIR)/pal/STM32/linker/STM32F407VG_flash.ld           \
+                           -static -fno-rtti -fno-exceptions -fno-stack-protector        \
+                           -fno-stack-check -fno-bounds-check -fno-non-call-exceptions   \
+                           -fno-unwind-tables -fconserve-space                           \
+                           -nostdinc -nostdinc++ -nostdlib -nodefaultlibs -nostartfiles  \
+                           -lsupc++
+
+ifdef DEBUG
+ADDITIONAL_CFLAGS += $(DEBUG_CFLAGS)
+ADDITIONAL_CXXFLAGS += $(DEBUG_CXXFLAGS)
+ADDITIONAL_C_LDFLAGS +=
+ADDITIONAL_CXX_LDFLAGS +=
+else
+ADDITIONAL_CFLAGS += $(RELEASE_CFLAGS)
+ADDITIONAL_CXXFLAGS += $(RELEASE_CXXFLAGS)
+ADDITIONAL_C_LDFLAGS +=
+ADDITIONAL_CXX_LDFLAGS +=
+endif
+
+ifdef EMBEDDED
+ADDITIONAL_CFLAGS += $(EMBEDDED_CFLAGS)
+ADDITIONAL_CXXFLAGS += $(EMBEDDED_CXXFLAGS)
+ADDITIONAL_C_LDFLAGS += $(EMBEDDED_C_LDFLAGS)
+ADDITIONAL_CXX_LDFLAGS += $(EMBEDDED_CXX_LDFLAGS)
+endif
+
+C_CFLAGS = $(COMMON_C_CFLAGS) $(ADDITIONAL_CFLAGS)
+CXX_CFLAGS = $(COMMON_CXX_CFLAGS) $(ADDITIONAL_CXXFLAGS)
+C_LDFLAGS = $(COMMON_C_LDFLAGS) $(ADDITIONAL_C_LDFLAGS)
+CXX_LDFLAGS = $(COMMON_CXX_LDFLAGS) $(ADDITIONAL_CXX_LDFLAGS)
+
+####################################################################################################
+#
+# http://www.gnu.org/s/hello/manual/make/Quick-Reference.html
+#
+# A table of automatic variables:
+#
+# $@
+#    The file name of the target of the rule. If the target is an archive member,
+#    then `$@' is the name of the archive file.
+#
+# $%
+#    The target member name, when the target is an archive member.
+#
+# $<
+#    The name of the first dependency.
+#
+# $?
+#    The names of all the dependencies that are newer than the target, with spaces between them.
+#
+# $^
+#    The names of all the dependencies, with spaces between them.
+#    For dependencies which are archive members, only the member named is used.
+#
+# $+
+#    This is like `$^', but dependencies listed more than once are duplicated in the order
+#    they were listed in the makefile.
+#
+# $*
+#    The stem with which an implicit rule matches (see section How Patterns Match).
+#
+####################################################################################################
+
+####################################################################################################
+# Abandoned snippets
+#
+# -D_REENTRANT
+#
+# -Weffc++
+#
+# -nostdlib -nodefaultlibs -nostartfiles
+#
+# -fno-rtti -fno-exceptions
+#
+####################################################################################################
+
