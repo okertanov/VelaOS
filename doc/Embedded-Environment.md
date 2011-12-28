@@ -168,6 +168,8 @@ ARMv8 - Will support 64-bit
 
 [Ubuntu: Linaro Toolchain](https://launchpad.net/linaro-toolchain)
 
+[Installing and running Debian armel on an emulated ARM machine on Windows (QEMU)](http://cronicasredux.blogspot.com/2011/09/installing-and-running-debian-armel-on.html)
+
 
 ### Cross-build projects
 [Buildroot: making Embedded Linux easy](http://www.buildroot.net/)
