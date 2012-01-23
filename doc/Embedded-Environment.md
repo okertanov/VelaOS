@@ -146,6 +146,8 @@ ARMv8 - Will support 64-bit
 
 [Run to Completion (RTC) scheduler](http://www.mentor.com/embedded-software/blog/post/the-one-line-rtos-0aad7b67-fc22-444d-b3da-67ad42a352e0)
 
+[Embedded Programming with the GNU Toolchain](http://www.bravegnu.org/gnu-eprog/)
+
 
 ### Debian amd Ubuntu cross-compilation
 [Debian: ARM Port](http://www.debian.org/ports/arm/)
