@@ -238,6 +238,8 @@ ARMv8 - Will support 64-bit
 
 [GitHub: STM32 Discovery Line Linux Programmer](https://github.com/texane/stlink)
 
+[Ubuntu + Eclipse + Code Sourcery + OpenOCD + j-link + ARM](http://we.easyelectronics.ru/CADSoft/ubuntu-eclipse-code-sourcery-openocd-j-link-arm-ili-bystryy-start-dlya-somnevayuschihsya.html)
+
 
 ### Free IDEs
 [GNU ARM Eclipse Plug-in](http://sourceforge.net/projects/gnuarmeclipse/)
