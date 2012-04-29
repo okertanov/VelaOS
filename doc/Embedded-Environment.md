@@ -150,6 +150,8 @@ ARMv8 - Will support 64-bit
 
 [ARMFlasher - программа для прошивки платы Disсovery в Kubuntu](http://we.easyelectronics.ru/STM32/armflasher---programma-dlya-proshivki-platy-dissovery-v-kubuntu.html)
 
+[Ключики компилятора avr-gcc для уменьшения бинарника](http://we.easyelectronics.ru/AVR/klyuchiki-kompilyatora-avr-gcc-dlya-umensheniya-binarnika.html)
+
 
 ### Debian amd Ubuntu cross-compilation
 [Debian: ARM Port](http://www.debian.org/ports/arm/)
