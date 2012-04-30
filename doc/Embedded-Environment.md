@@ -156,6 +156,9 @@ ARMv8 - Will support 64-bit
 
 [ST-LINK + Eclipse на Ubuntu ](http://we.easyelectronics.ru/CADSoft/st-link-eclipse-na-ubuntu.html)
 
+[Ключики компилятора avr-gcc для уменьшения бинарника](http://we.easyelectronics.ru/AVR/klyuchiki-kompilyatora-avr-gcc-dlya-umensheniya-binarnika.html)
+
+
 ### Debian amd Ubuntu cross-compilation
 [Debian: ARM Port](http://www.debian.org/ports/arm/)
 

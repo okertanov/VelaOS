@@ -8,10 +8,18 @@
     @license    BSD
     @see LICENSE file
 */
+
+/**
+    @see NtetBeans Modules
+        http://wiki.netbeans.org/NetBeansDeveloperFAQ
+        http://techgossipz.blogspot.com/2011/05/executing-external-files-from-netbeans.html
+        http://platform.netbeans.org/tutorials/nbm-google.html
+        http://platform.netbeans.org/tutorials/nbm-projectextension.html
+        http://blogs.oracle.com/geertjan/entry/preferences_api_and_netbeans_ide
+*/
 package com.espectrale.nb.makefile;
 
 import org.netbeans.api.project.Project;
-
 import org.openide.util.NbBundle.Messages;
 
 import java.awt.event.ActionEvent;
