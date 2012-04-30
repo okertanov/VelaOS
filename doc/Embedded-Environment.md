@@ -150,6 +150,11 @@ ARMv8 - Will support 64-bit
 
 [ARMFlasher - программа дл€ прошивки платы Disсovery в Kubuntu](http://we.easyelectronics.ru/STM32/armflasher---programma-dlya-proshivki-platy-dissovery-v-kubuntu.html)
 
+[Template дл€ STM32 (IAR+PHYDriver+CMSIS+FreeRTOS)](http://we.easyelectronics.ru/STM32/template-dlya-stm32-iarphydrivercmsisfreertos.html)
+
+[STM32F1xx Ч »нструменты разработчика и FreeRTOS](http://habrahabr.ru/post/139601/)
+
+[ST-LINK + Eclipse на Ubuntu ](http://we.easyelectronics.ru/CADSoft/st-link-eclipse-na-ubuntu.html)
 
 ### Debian amd Ubuntu cross-compilation
 [Debian: ARM Port](http://www.debian.org/ports/arm/)
