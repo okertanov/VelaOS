@@ -120,7 +120,7 @@ ARMv8 - Will support 64-bit
 
 [STM32 ist ein Mikrocontroller-Familie von ST](http://www.mikrocontroller.net/articles/STM32)
 
-[Внутрисхемная отладка через Eclipse на примере платы stm32discovery](http://radiokot.ru/articles/34/)
+[Р’РЅСѓС‚СЂРёСЃС…РµРјРЅР°СЏ РѕС‚Р»Р°РґРєР° С‡РµСЂРµР· Eclipse РЅР° РїСЂРёРјРµСЂРµ РїР»Р°С‚С‹ stm32discovery](http://radiokot.ru/articles/34/)
 
 [Getting to grips with Eclipse: cross compiling](http://www.embedded-linux.co.uk/tutorial/eclipse-cross-compile)
 
@@ -128,19 +128,19 @@ ARMv8 - Will support 64-bit
 
 [STM32/ARM Cortex-M3 HOWTO: Development under Ubuntu](http://fun-tech.se/stm32/index.php)
 
-[Настройка связки Eclipse и ARM GCC в Linux](http://www.levap.ru/300)
+[РќР°СЃС‚СЂРѕР№РєР° СЃРІСЏР·РєРё Eclipse Рё ARM GCC РІ Linux](http://www.levap.ru/300)
 
 [Part 1: Mac OS + Eclipse + OpenOCD + STM32 (ARM Cortex M3)](http://salvatoremenendez.blogspot.com/2011/08/mac-os-eclipse-openocd-stm32-arm-cortex.html)
 
-[easyelectronics.ru ARM. Учебный Курс.](http://easyelectronics.ru/category/arm-uchebnyj-kurs)
+[easyelectronics.ru ARM. РЈС‡РµР±РЅС‹Р№ РљСѓСЂСЃ.](http://easyelectronics.ru/category/arm-uchebnyj-kurs)
 
-[easyelectronics.ru ARM. Учебный Курс. STM32 tag](http://we.easyelectronics.ru/blog/STM32/)
+[easyelectronics.ru ARM. РЈС‡РµР±РЅС‹Р№ РљСѓСЂСЃ. STM32 tag](http://we.easyelectronics.ru/blog/STM32/)
 
-[easyelectronics.ru ARM. Учебный Курс. Keil + CMSIS. Создание проекта](http://easyelectronics.ru/arm-uchebnyj-kurs-keil-cmsis-sozdanie-proekta.html)
+[easyelectronics.ru ARM. РЈС‡РµР±РЅС‹Р№ РљСѓСЂСЃ. Keil + CMSIS. РЎРѕР·РґР°РЅРёРµ РїСЂРѕРµРєС‚Р°](http://easyelectronics.ru/arm-uchebnyj-kurs-keil-cmsis-sozdanie-proekta.html)
 
-[Работа с портами ввода-вывода микроконтроллеров на Си++](http://easyelectronics.ru/rabota-s-portami-vvoda-vyvoda-mikrokontrollerov-na-si.html)
+[Р Р°Р±РѕС‚Р° СЃ РїРѕСЂС‚Р°РјРё РІРІРѕРґР°-РІС‹РІРѕРґР° РјРёРєСЂРѕРєРѕРЅС‚СЂРѕР»Р»РµСЂРѕРІ РЅР° РЎРё++](http://easyelectronics.ru/rabota-s-portami-vvoda-vyvoda-mikrokontrollerov-na-si.html)
 
-[Пример использования CMSIS в Eclipse](http://cxemotexnika.org/2010/11/%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D1%80-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F-cmsis-%D0%B2-eclipse/)
+[РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ CMSIS РІ Eclipse](http://cxemotexnika.org/2010/11/%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D1%80-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F-cmsis-%D0%B2-eclipse/)
 
 [CMSIS Doulos Tutorial PDF](http://www.doulos.com/knowhow/arm/CMSIS/CMSIS_Doulos_Tutorial.pdf)
 
@@ -148,15 +148,17 @@ ARMv8 - Will support 64-bit
 
 [Embedded Programming with the GNU Toolchain](http://www.bravegnu.org/gnu-eprog/)
 
-[ARMFlasher - программа для прошивки платы Disсovery в Kubuntu](http://we.easyelectronics.ru/STM32/armflasher---programma-dlya-proshivki-platy-dissovery-v-kubuntu.html)
+[ARMFlasher - РїСЂРѕРіСЂР°РјРјР° РґР»СЏ РїСЂРѕС€РёРІРєРё РїР»Р°С‚С‹ DisСЃovery РІ Kubuntu](http://we.easyelectronics.ru/STM32/armflasher---programma-dlya-proshivki-platy-dissovery-v-kubuntu.html)
 
-[Template для STM32 (IAR+PHYDriver+CMSIS+FreeRTOS)](http://we.easyelectronics.ru/STM32/template-dlya-stm32-iarphydrivercmsisfreertos.html)
+[Template РґР»СЏ STM32 (IAR+PHYDriver+CMSIS+FreeRTOS)](http://we.easyelectronics.ru/STM32/template-dlya-stm32-iarphydrivercmsisfreertos.html)
 
-[STM32F1xx — Инструменты разработчика и FreeRTOS](http://habrahabr.ru/post/139601/)
+[STM32F1xx вЂ” РРЅСЃС‚СЂСѓРјРµРЅС‚С‹ СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР° Рё FreeRTOS](http://habrahabr.ru/post/139601/)
 
-[ST-LINK + Eclipse на Ubuntu ](http://we.easyelectronics.ru/CADSoft/st-link-eclipse-na-ubuntu.html)
+[ST-LINK + Eclipse РЅР° Ubuntu ](http://we.easyelectronics.ru/CADSoft/st-link-eclipse-na-ubuntu.html)
 
-[Ключики компилятора avr-gcc для уменьшения бинарника](http://we.easyelectronics.ru/AVR/klyuchiki-kompilyatora-avr-gcc-dlya-umensheniya-binarnika.html)
+[РљР»СЋС‡РёРєРё РєРѕРјРїРёР»СЏС‚РѕСЂР° avr-gcc РґР»СЏ СѓРјРµРЅСЊС€РµРЅРёСЏ Р±РёРЅР°СЂРЅРёРєР°](http://we.easyelectronics.ru/AVR/klyuchiki-kompilyatora-avr-gcc-dlya-umensheniya-binarnika.html)
+
+[prattmic / stm32f4-templates](https://github.com/prattmic/stm32f4-templates)
 
 
 ### Debian amd Ubuntu cross-compilation
