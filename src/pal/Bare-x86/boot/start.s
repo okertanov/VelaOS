@@ -41,12 +41,6 @@ section .text
 ; Align 32 bits boundary
 align 4
 
-; Main loader code
-start:
-_start:
-    ; When use own bootloader
-    jmp     multiboot_entry
-
     ; Multiboot header
 multiboot_header:
     dd MULTIBOOT_HEADER_MAGIC               ; Magic number
@@ -60,7 +54,13 @@ multiboot_header:
     dd IMAGE_LOAD_BASE + multiboot_entry    ; Entry adress
 %endif
 
-; Multiboot entry
+; Main loader code
+start:
+_start:
+    ; When use own bootloader
+    jmp     multiboot_entry
+
+    ; Multiboot entry
 multiboot_entry:
 
     ; Mask interrupts
@@ -80,7 +80,7 @@ multiboot_entry:
     push eax ; Multiboot magic number
 
     ; Then call kernel's main code
-    call kmain
+    ;call kmain
 
     ; Show Message
 show_message:
