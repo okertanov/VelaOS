@@ -14,10 +14,10 @@ kernel.bin: kernel.elf
 	objcopy $< -O binary $@
 
 kernel.elf: start.o kernel.o
-	ld -Map kernel.map -T kernel.ld -o $@ $^
+	ld -m elf_i386 -Map kernel.map -T kernel.ld -o $@ $^
 
 kernel.o: kernel.c
-	gcc -Wall -Wextra -Werror -nostdlib -fno-builtin -nostartfiles -nodefaultlibs -o $@ $<
+	gcc -m32 -Wall -Wextra -Werror -nostdlib -nostdinc -fno-builtin -nostartfiles -nodefaultlibs -fno-stack-protector -o $@ $<
 
 start.o: start.s
 	nasm -f elf -o $@ $<

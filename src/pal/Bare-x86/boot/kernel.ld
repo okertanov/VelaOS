@@ -3,7 +3,7 @@
     @license    BSD
 */
 
-OUTPUT_FORMAT("pe-i386")
+OUTPUT_FORMAT("elf32-i386")
 
 ENTRY (start)
 

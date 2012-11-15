@@ -10,7 +10,7 @@ bits 32
 global start, _start
 
 ; kmain is defined in kernel.c
-extern _kmain
+extern kmain
 
 ; Initial kernel stack space (16Kb)
 STACKSIZE equ 0x4000
@@ -78,7 +78,7 @@ multiboot_entry:
     push eax ; Multiboot magic number
 
     ; Then call kernel's main code
-    call _kmain
+    call kmain
 
     ; Show Message
 show_message:
