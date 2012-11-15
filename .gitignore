@@ -8,6 +8,13 @@
 *.bin
 *.img
 *.map
+*.lst
 *.tgz
 doc/html
 doc/latex
+bin/test-init
+bin/test-leds
+bin/test-log
+bin/test-micro
+bin/test-mini
+bin/test-tasks
