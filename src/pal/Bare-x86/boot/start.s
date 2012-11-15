@@ -80,22 +80,7 @@ multiboot_entry:
     push eax ; Multiboot magic number
 
     ; Then call kernel's main code
-    ;call kmain
-
-    ; Show Message
-show_message:
-    mov edi, VIDEORAM_BASE
-    mov esi, IMAGE_LOAD_BASE
-    add esi, boot_msg ; offset from base
-msg:
-    mov byte al, [esi]
-    cmp al, 0
-    je  terminate
-    mov ah, 0xa0
-    mov word [edi], ax
-    add edi, 2
-    inc esi
-    jmp msg
+    call kmain
 
     ; Terminate
 terminate:

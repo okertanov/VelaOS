@@ -30,6 +30,7 @@ int kmain(unsigned int magic, void* mb_info)
    else
    {
        /* khalt() */
+       videoram[0] = 'X' | 0x0700;
    }
 
    return MULTIBOOT_HEADER_MAGIC;
