@@ -6,7 +6,7 @@
 #define MULTIBOOT_HEADER_MAGIC  0x1BADB002
 #define VIDEORAM_BASE           0xB8000
 
-static volatile unsigned short *videoram = (unsigned short*)VIDEORAM_BASE;
+static volatile unsigned short * const videoram = (unsigned short*)VIDEORAM_BASE;
 
 int kmain(unsigned int magic, void* mb_info)
 {
