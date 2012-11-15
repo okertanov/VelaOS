@@ -7,7 +7,7 @@ all: kernel
 
 kernel: kernel.img
 
-kernel.img: kernel.bin
+kernel.img: kernel.elf
 	cat ../bin/grub/stage1 ../bin/grub/stage2 ../bin/grub/pad750 $< > $@
 
 kernel.bin: kernel.elf

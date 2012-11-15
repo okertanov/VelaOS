@@ -30,7 +30,7 @@ MULTIBOOT_HEADER_MAGIC     equ  0x1BADB002
 
 ; Multiboot 'flag' field
 ; 0x00010003 - not an elf, or 0x00000003 - an elf executable
-MULTIBOOT_HEADER_FLAGS     equ  0x00010003
+MULTIBOOT_HEADER_FLAGS     equ  0x00000003
 
 ; Multiboot checksum required
 MULTIBOOT_HEADER_CHECKSUM  equ -(MULTIBOOT_HEADER_MAGIC + MULTIBOOT_HEADER_FLAGS)
@@ -52,11 +52,13 @@ multiboot_header:
     dd MULTIBOOT_HEADER_MAGIC               ; Magic number
     dd MULTIBOOT_HEADER_FLAGS               ; Flags
     dd MULTIBOOT_HEADER_CHECKSUM            ; Checksum
+%ifdef NOT_ELF
     dd IMAGE_LOAD_BASE + multiboot_header   ; Header adress
     dd IMAGE_LOAD_BASE                      ; Load adress
     dd 00                                   ; Load end adress : not necessary
     dd 00                                   ; Bss end adress : not necessary
     dd IMAGE_LOAD_BASE + multiboot_entry    ; Entry adress
+%endif
 
 ; Multiboot entry
 multiboot_entry:
