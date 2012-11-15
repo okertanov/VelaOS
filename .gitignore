@@ -8,5 +8,6 @@
 *.bin
 *.img
 *.map
+*.tgz
 doc/html
 doc/latex
