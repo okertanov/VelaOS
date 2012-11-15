@@ -15,8 +15,9 @@ extern kmain
 ; Initial kernel stack space (16Kb)
 STACKSIZE equ 0x4000
 
-; Load base address
-; must be >= 1Mb
+; Load base address, must be >= 1Mb
+; Extended memory:
+; Start: 0x00100000 End: 0x00EFFFFF Size: 0x00E00000 (14 MiB)
 IMAGE_LOAD_BASE equ 0x00100000
 
 ; Direct video memory address
@@ -29,11 +30,16 @@ VIDEORAM_BASE equ 0x000B8000
 MULTIBOOT_HEADER_MAGIC     equ  0x1BADB002
 
 ; Multiboot 'flag' field
-; 0x00010003 - not an elf, or 0x00000003 - an elf executable
-MULTIBOOT_HEADER_FLAGS     equ  0x00000003
+; 0x00010003 - not an elf, or
+; 0x00000003 - an elf executable, or
+; 0x00010007 - with kludge and video mode info
+MULTIBOOT_HEADER_FLAGS     equ  0x00010007
 
 ; Multiboot checksum required
 MULTIBOOT_HEADER_CHECKSUM  equ -(MULTIBOOT_HEADER_MAGIC + MULTIBOOT_HEADER_FLAGS)
+
+; Use a.out cludge
+%define AOUT_KLUDGE 1
 
 ; Code section
 section .text
@@ -46,7 +52,7 @@ multiboot_header:
     dd MULTIBOOT_HEADER_MAGIC               ; Magic number
     dd MULTIBOOT_HEADER_FLAGS               ; Flags
     dd MULTIBOOT_HEADER_CHECKSUM            ; Checksum
-%ifdef NOT_MB_ELF
+%ifdef AOUT_KLUDGE
     dd IMAGE_LOAD_BASE + multiboot_header   ; Header adress
     dd IMAGE_LOAD_BASE                      ; Load adress
     dd 00                                   ; Load end adress : not necessary
