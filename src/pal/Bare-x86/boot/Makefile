@@ -14,21 +14,20 @@ kernel.bin: kernel.elf
 	objcopy $< -O binary $@
 
 kernel.elf: start.o kernel.o
-	ld -m elf_i386 -Map kernel.map -T kernel.ld -o $@ $^
-
-kernel.o: kernel.c
-	gcc -m32 -Wall -Wextra -Werror -nostdlib -nostdinc -fno-builtin -nostartfiles -nodefaultlibs -fno-stack-protector -o $@ $<
+	ld -g -m elf_i386 -Map kernel.map -T kernel.ld -o $@ $^
 
 start.o: start.s
-	nasm -f elf -o $@ $<
+	nasm -g -f elf -o $@ $<
+
+kernel.o: kernel.c
+	gcc -g -m32 -Wall -Wextra -Werror -nostdlib -nostdinc -fno-builtin -nostartfiles -nodefaultlibs -fno-stack-protector -fomit-frame-pointer -fno-exceptions -fno-asynchronous-unwind-tables -fno-unwind-tables -c -o $@ $<
 
 clean:
 	-@rm -f *.bin *.o *.elf *.img *.map *.lst
 
 run: kernel.img
-	/c/tools/qemu/qemu-system-i386w.exe -L /c/tools/qemu/Bios -vga std $<
-#	/c/tools/qemu/qemu-system-i386w.exe -L /c/tools/qemu/Bios -vga std -boot c -hda kernel.bin
-#	/c/tools/qemu/qemu-system-i386w.exe -L /c/tools/qemu/Bios -vga std -boot c -hda kernel.img
+	qemu -vga std -s $<
+#	qemu -vga std -s -kernel kernel.elf
 
 help:
 	-@echo "make clean all kernel run help"

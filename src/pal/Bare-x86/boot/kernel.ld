@@ -13,20 +13,23 @@ SECTIONS
 
     .text ALIGN (0x1000) :
     {
+        __text_start__ = . ;
+        start.o(.text)
         *(.text)
         __text_end__ = . ;
     }
 
     .rodata ALIGN (0x1000) :
     {
-        *(.rodata*)
+        __rodata_start__ = . ;
+        *(.rodata)
         __rodata_end__ = . ;
     }
 
     .data ALIGN (0x1000) :
     {
+        __data_start__ = . ;
         *(.data)
-        *(.data2)
         *(.rdata)
         __data_end__ = . ;
     }

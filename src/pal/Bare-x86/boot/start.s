@@ -7,7 +7,7 @@
 bits 32
 
 ; Making entry point visible to linker
-global start, _start
+global start
 
 ; kmain is defined in kernel.c
 extern kmain
@@ -20,7 +20,7 @@ STACKSIZE equ 0x4000
 IMAGE_LOAD_BASE equ 0x00100000
 
 ; Direct video memory address
-VIDEORAM_BASE equ 0xB8000
+VIDEORAM_BASE equ 0x000B8000
 
 ; Multiboot header - see GRUB docs for details
 ; http://www.gnu.org/software/grub/manual/multiboot/multiboot.html#boot_002eS
@@ -46,7 +46,7 @@ multiboot_header:
     dd MULTIBOOT_HEADER_MAGIC               ; Magic number
     dd MULTIBOOT_HEADER_FLAGS               ; Flags
     dd MULTIBOOT_HEADER_CHECKSUM            ; Checksum
-%ifdef NOT_ELF
+%ifdef NOT_MB_ELF
     dd IMAGE_LOAD_BASE + multiboot_header   ; Header adress
     dd IMAGE_LOAD_BASE                      ; Load adress
     dd 00                                   ; Load end adress : not necessary
@@ -56,7 +56,6 @@ multiboot_header:
 
 ; Main loader code
 start:
-_start:
     ; When use own bootloader
     jmp     multiboot_entry
 
