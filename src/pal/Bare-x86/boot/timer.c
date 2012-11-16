@@ -5,10 +5,11 @@
 
 #include "timer.h"
 #include "io.h"
+#include "idt.h"
 
 static uint32_t timer_tick_count = 0;
 
-static void timer_irq0_handler(registers_t *regs)
+static void timer_irq0_handler(__attribute__((unused)) registers_t *regs)
 {
     timer_tick_count++;
 }

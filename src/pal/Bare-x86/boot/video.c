@@ -6,6 +6,8 @@
 #include "video.h"
 #include "io.h"
 
+volatile uint16_t* const videoram = (uint16_t*)VIDEORAM_BASE;
+
 static volatile uint16_t txt_pos_row = 0;
 static volatile uint16_t txt_pos_col = 0;
 

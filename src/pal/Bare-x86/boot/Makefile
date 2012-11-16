@@ -13,7 +13,17 @@ kernel.img: kernel.elf
 kernel.bin: kernel.elf
 	objcopy $< -O binary $@
 
-kernel.elf: start.o gdts.o idts.o gdt.o idt.o kernel.o video.o io.o
+kernel.elf: start.o  \
+            gdts.o   \
+            idts.o   \
+            gdt.o    \
+            idt.o    \
+            kernel.o \
+            video.o  \
+            io.o     \
+            timer.o  \
+            util.o
+
 	ld -g -m elf_i386 -Map kernel.map -T kernel.ld -o $@ $^
 
 %.o: %.s

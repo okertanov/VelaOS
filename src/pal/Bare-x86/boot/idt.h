@@ -35,6 +35,7 @@ typedef void (*interrupt_handler_t)(registers_t *);
 void sys_init_idt(void);
 extern void idt_flush(uint32_t);
 void idt_set_gate(uint8_t, uint32_t, uint16_t, uint8_t);
+void register_interrupt_handler(uint8_t inum, interrupt_handler_t handler);
 
 #define IRQ0 32
 #define IRQ1 33

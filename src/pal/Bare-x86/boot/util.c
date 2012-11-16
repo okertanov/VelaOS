@@ -14,5 +14,5 @@ void* memset(void *block, int c, size_t len)
         *bblock++ = c;
     }
 
-    return (b);
+    return (block);
 }
