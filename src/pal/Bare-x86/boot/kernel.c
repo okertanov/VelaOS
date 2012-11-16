@@ -3,34 +3,15 @@
     @license    BSD
 */
 
-#define MULTIBOOT_LOADER_MAGIC  0x2BADB002
-#define VIDEORAM_BASE           0x000B8000
+#include "kernel.h"
+#include "util.h"
+#include "video.h"
+#include "io.h"
+#include "gdt.h"
+#include "idt.h"
+#include "timer.h"
 
-static volatile unsigned short* const videoram = (unsigned short*)VIDEORAM_BASE;
-
-void txt_write_to_screens(const char* const str, unsigned short row, unsigned short col, unsigned char mask)
-{
-    volatile unsigned short* pvideo = videoram + (row * 80 + col);
-    unsigned int idx = 0;
-
-    while( str[idx] != 0 )
-    {
-        *pvideo++ = (unsigned short)(str[idx++] | (mask << 8));
-    }
-}
-
-void txt_clear_screen(void)
-{
-    volatile unsigned short* pvideo = videoram;
-    unsigned int sz = 0;
-
-    while( sz++ < 80 * 25 )
-    {
-        *pvideo++ = (unsigned short)(32 | (0x08 << 8));
-    }
-}
-
-int kmain(unsigned int magic, void* mb_info)
+int sys_main(unsigned int magic, void* mb_info)
 {
     /* Clear screen */
     txt_clear_screen();
@@ -47,14 +28,21 @@ int kmain(unsigned int magic, void* mb_info)
             (unsigned long)(((unsigned long*)mb_info)[2]) :
             0x00100000; /* 1Mb */
         char* boot_loader_name = mb_flags | (1 << 9) ?
-            (char*)(((long*)mb_info)[16]) :
+            (char*)(((unsigned long*)mb_info)[16]) :
             "Unknown bootloader.";
 
-        /* Resources setup: GDT, IDT */
+        /* HW discovery */
         /* ... */
 
+        /* Resources init: GDT, IDT */
+        sys_init_gtd();
+        sys_init_idt();
+        sys_init_mem();
+        sys_init_timer();
+        sys_init_hw();
+
         /* Then enable interrupts */
-        /*asm volatile ("sti");*/
+        hw_sti();
 
         /* Display bootloader's name */
         txt_write_to_screens(boot_loader_name, 0, 0, 0x07);
@@ -63,13 +51,13 @@ int kmain(unsigned int magic, void* mb_info)
         txt_write_to_screens("Zeno: Load complete.", 1, 0, 0x02);
 
         /* OS Loop */
-        unsigned long long counter = 0;
-        char* dashes[] = {"|","/","-","\\"};
-        while( 1 )
+        uint64_t counter = 0;
+        static char* dashes[] = {"|","/","-","\\"};
+        while( true )
         {
             /* Show progress */
             txt_write_to_screens(dashes[counter++ % 4], 2, 0, 0x0A);
-            /*asm volatile ("hlt");*/
+            hw_halt();
         }
     }
     else
@@ -81,5 +69,13 @@ int kmain(unsigned int magic, void* mb_info)
     }
 
     return MULTIBOOT_LOADER_MAGIC;
+}
+
+void sys_init_mem(void)
+{
+}
+
+void sys_init_hw(void)
+{
 }
 

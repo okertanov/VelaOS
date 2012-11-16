@@ -11,6 +11,8 @@ SECTIONS
 {
     . = 0x00100000;
 
+    __image_start__ = . ;
+
     .text ALIGN (0x1000) :
     {
         __text_start__ = . ;
@@ -40,6 +42,11 @@ SECTIONS
         *(COMMON)
         *(.bss)
         __bss_end__ = . ;
+    }
+
+    .end ALIGN (0x1000) :
+    {
+        __image_end__ = . ;
     }
 }
 

@@ -9,8 +9,8 @@ bits 32
 ; Making entry point visible to linker
 global start
 
-; kmain is defined in kernel.c
-extern kmain
+; sys_main is defined in kernel.c
+extern sys_main
 
 ; Initial kernel stack space (16Kb)
 STACKSIZE equ 0x4000
@@ -38,8 +38,14 @@ MULTIBOOT_HEADER_FLAGS     equ  0x00010007
 ; Multiboot checksum required
 MULTIBOOT_HEADER_CHECKSUM  equ -(MULTIBOOT_HEADER_MAGIC + MULTIBOOT_HEADER_FLAGS)
 
+; Use Multiboot header
+%define USE_MILTIBOOT_HEADER 1
+
 ; Use a.out cludge
-%define AOUT_KLUDGE 1
+%define USE_AOUT_KLUDGE 1
+
+; Use graphics cludge
+%define USE_GRAPHICS_KLUDGE 1
 
 ; Code section
 section .text
@@ -49,22 +55,30 @@ align 4
 
     ; Multiboot header
 multiboot_header:
+%ifdef USE_MILTIBOOT_HEADER
     dd MULTIBOOT_HEADER_MAGIC               ; Magic number
     dd MULTIBOOT_HEADER_FLAGS               ; Flags
     dd MULTIBOOT_HEADER_CHECKSUM            ; Checksum
-%ifdef AOUT_KLUDGE
+%endif
+%ifdef USE_AOUT_KLUDGE
     dd IMAGE_LOAD_BASE + multiboot_header   ; Header adress
     dd IMAGE_LOAD_BASE                      ; Load adress
-    dd 00                                   ; Load end adress : not necessary
-    dd 00                                   ; Bss end adress : not necessary
+    dd 00                                   ; Load end adress: not necessary
+    dd 00                                   ; Bss end adress: not necessary
     dd IMAGE_LOAD_BASE + multiboot_entry    ; Entry adress
+%endif
+%ifdef USE_GRAPHICS_KLUDGE
+    dd  1                                   ; Mode: EGA-standard text mode
+    dd 00                                   ; Width: not specified
+    dd 00                                   ; Height: not specified
+    dd 00                                   ; Depth: not specified
 %endif
 
 ; Main loader code
 start:
     ; When use own bootloader
     jmp     multiboot_entry
-
+.end:
     ; Multiboot entry
 multiboot_entry:
 
@@ -80,12 +94,12 @@ multiboot_entry:
     popf
 
     ; Pass multiboot arguments as:
-    ;     int kmain(unsigned int magic, void* mb_info)
+    ;     int sys_main(unsigned int magic, void* mb_info)
     push ebx ; Multiboot info structure
     push eax ; Multiboot magic number
 
     ; Then call kernel's main code
-    call kmain
+    call sys_main
 
     ; Terminate
 terminate:
@@ -94,11 +108,12 @@ hang_loop:
     ; Halt machine when kernel returns
     hlt
     jmp hang_loop
+.end:
 
     ; Local data
 boot_msg:
     db "Booting...", 0
-halt_message:
+halt_msg:
     db "Halted.", 0
 
 ; Block Started by Symbol
