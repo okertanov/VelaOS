@@ -32,6 +32,7 @@ SECTIONS
     {
         __data_start__ = . ;
         *(.data)
+        *(.data1)
         *(.rdata)
         __data_end__ = . ;
     }
