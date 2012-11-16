@@ -52,7 +52,7 @@ int sys_main(unsigned int magic, void* mb_info)
 
         /* OS Loop */
         uint64_t counter = 0;
-        static char* dashes[] = {"|","/","-","\\"};
+        static char* dashes[] = {"\x7C", "\x2F", "\x2D", "\x5C"};
         while( true )
         {
             /* Show progress */

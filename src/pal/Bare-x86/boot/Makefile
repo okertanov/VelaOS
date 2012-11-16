@@ -10,7 +10,7 @@ kernel: kernel.img
 kernel.img: kernel.elf
 	cat ../bin/grub/stage1 ../bin/grub/stage2 ../bin/grub/pad750 $< > $@
 
-kernel.bin: kernel.elf
+kernel.raw: kernel.elf
 	objcopy $< -O binary $@
 
 kernel.elf: start.o  \
@@ -23,8 +23,8 @@ kernel.elf: start.o  \
             io.o     \
             timer.o  \
             util.o
-
 	ld -g -m elf_i386 -Map kernel.map -T kernel.ld -o $@ $^
+	strip -d $@
 
 %.o: %.s
 	nasm -g -f elf -o $@ $<
@@ -33,7 +33,7 @@ kernel.elf: start.o  \
 	gcc -std=c11 -g -m32 -Wall -Wextra -Werror -nostdlib -nostdinc -fno-builtin -nostartfiles -nodefaultlibs -fno-stack-protector -fomit-frame-pointer -fno-exceptions -fno-asynchronous-unwind-tables -fno-unwind-tables -c -o $@ $<
 
 clean:
-	-@rm -f *.bin *.o *.elf *.img *.map *.lst
+	-@rm -f *.bin *.raw *.o *.elf *.img *.map *.lst
 
 run: kernel.img
 	qemu -no-reboot -vga std -s $<
