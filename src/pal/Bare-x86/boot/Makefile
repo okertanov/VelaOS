@@ -39,7 +39,7 @@ clean:
 	-@rm -f *.bin *.raw *.o *.elf *.img *.map *.lst
 
 run: kernel.img
-	qemu -no-reboot -vga std -s -boot c -hda $<
+	qemu -no-reboot -m 512 -vga std -s -boot c -hda $<
 #	qemu -vga std -s -kernel kernel.elf
 
 help:
