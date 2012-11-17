@@ -13,15 +13,18 @@ kernel.img: kernel.elf
 kernel.raw: kernel.elf
 	objcopy $< -O binary $@
 
-kernel.elf: start.o  \
-            gdts.o   \
-            idts.o   \
-            gdt.o    \
-            idt.o    \
-            kernel.o \
-            video.o  \
-            io.o     \
-            timer.o  \
+kernel.elf: start.o     \
+            gdts.o      \
+            idts.o      \
+            gdt.o       \
+            idt.o       \
+            kernel.o    \
+            video.o     \
+            io.o        \
+            timer.o     \
+            memory.o    \
+            hardware.o  \
+            sched.o     \
             util.o
 	ld -g -m elf_i386 -Map kernel.map -T kernel.ld -o $@ $^
 	strip -d $@
@@ -36,7 +39,7 @@ clean:
 	-@rm -f *.bin *.raw *.o *.elf *.img *.map *.lst
 
 run: kernel.img
-	qemu -no-reboot -vga std -s $<
+	qemu -no-reboot -vga std -s -boot c -hda $<
 #	qemu -vga std -s -kernel kernel.elf
 
 help:

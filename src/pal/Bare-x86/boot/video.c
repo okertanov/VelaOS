@@ -24,12 +24,17 @@ void txt_write_to_screens(const char* const str, uint16_t row, uint16_t col, uin
 
 void txt_clear_screen(void)
 {
+    txt_fill_screen(0x20, 0);
+}
+
+void txt_fill_screen(char c,  uint8_t mask)
+{
     volatile uint16_t* pvideo = videoram;
     unsigned int sz = 0;
 
     while( sz++ < 80 * 25 )
     {
-        *pvideo++ = (uint16_t)(32 | (0x08 << 8));
+        *pvideo++ = (uint16_t)(c | (mask << 8));
     }
 
     txt_pos_row = 0;

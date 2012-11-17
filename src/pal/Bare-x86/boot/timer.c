@@ -7,11 +7,19 @@
 #include "io.h"
 #include "idt.h"
 
+/* For debug only */
+#include "video.h"
+#include "util.h"
+
 static uint32_t timer_tick_count = 0;
 
 static void timer_irq0_handler(__attribute__((unused)) registers_t *regs)
 {
     timer_tick_count++;
+
+    /* For debug only */
+    char buffer[32] = {0};
+    txt_write_to_screens(itoa(timer_tick_count, buffer, 10), 1, 22, 0x0A);
 }
 
 void sys_init_timer(void)

@@ -7,7 +7,5 @@
 
 #include "types.h"
 
-void* memset(void *b, int c, size_t len);
-
-char *itoa(int num, char *str, int radix);
+void sys_init_hw(void);
 

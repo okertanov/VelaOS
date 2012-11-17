@@ -7,7 +7,8 @@
 
 #include "types.h"
 
-void* memset(void *b, int c, size_t len);
+typedef int sched_t;
+typedef int task_t;
 
-char *itoa(int num, char *str, int radix);
+void sys_init_sched(void);
 
