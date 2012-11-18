@@ -16,6 +16,7 @@ SOURCES =   start.c     \
             hardware.c  \
             sched.c     \
             paravirt.c  \
+            event.c     \
             util.c
 
 OBJS = $(patsubst %.c,%.o,$(SOURCES))

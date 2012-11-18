@@ -11,4 +11,5 @@ Standard C Library
 * newlib
 * dietlibc
 * klibc
+* Baselibc
 

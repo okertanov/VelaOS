@@ -22,9 +22,5 @@ extern const uint32_t __bss_start__, __bss_end__;
 #define hw_sti()    __asm volatile("sti")
 #define hw_halt()   __asm volatile("hlt");
 
-void sys_init_mem();
-void sys_init_timer();
-void sys_init_hw();
-
 int sys_main(unsigned int magic, void* mb_info);
 

@@ -13,6 +13,8 @@
 #include "memory.h"
 #include "hardware.h"
 #include "sched.h"
+#include "paravirt.h"
+#include "event.h"
 
 int sys_main(unsigned int magic, void* mb_info)
 {
@@ -61,10 +63,13 @@ int sys_main(unsigned int magic, void* mb_info)
         txt_write_to_screens("Memory Upper:", 3, 0, 0x07);
         txt_write_to_screens(itoa(mb_mem_upper, buff, 10), 3, 14, 0x07);
 
-        /*Display boot device*/
+        /* Display boot device */
         txt_write_to_screens("Boot device:", 4, 0, 0x07);
         txt_write_to_screens("0x", 4, 13, 0x07);
         txt_write_to_screens(itoa(mb_boot_device, buff, 16), 4, 15, 0x07);
+
+        /* Display simple menu */
+        txt_write_to_screens("(s) shell, (t) trap, (r) reboot, (h) halt", 24, 0, 0x07);
 
         /* OS Loop */
         uint64_t counter = 0;

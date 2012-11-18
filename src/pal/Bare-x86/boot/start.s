@@ -39,27 +39,36 @@ MULTIBOOT_HEADER_FLAGS     equ  0x00010007
 MULTIBOOT_HEADER_CHECKSUM  equ -(MULTIBOOT_HEADER_MAGIC + MULTIBOOT_HEADER_FLAGS)
 
 ; Use Multiboot header
-%define USE_MILTIBOOT_HEADER 1
+%define USE_MILTIBOOT_HEADER    1
 
 ; Use a.out cludge
-%define USE_AOUT_KLUDGE 1
+%define USE_AOUT_KLUDGE         1
 
 ; Use graphics cludge
-%define USE_GRAPHICS_KLUDGE 1
+%define USE_GRAPHICS_KLUDGE     1
+
+; Use raw entry for non-multiboot loaders
+%define USE_RAW_ENTRY           1
 
 ; Code section
 section .text
 
-; Align 32 bits boundary
+; Skip header when using raw startup
+%ifdef USE_RAW_ENTRY
+raw_entry:
+    jmp start
+.end:
+%endif
+
+; Align multiboot header to 32-bit boundary
 align 4
 
-    ; Multiboot header
-multiboot_header:
+; Multiboot header
 %ifdef USE_MILTIBOOT_HEADER
+multiboot_header:
     dd MULTIBOOT_HEADER_MAGIC               ; Magic number
     dd MULTIBOOT_HEADER_FLAGS               ; Flags
     dd MULTIBOOT_HEADER_CHECKSUM            ; Checksum
-%endif
 %ifdef USE_AOUT_KLUDGE
     dd IMAGE_LOAD_BASE + multiboot_header   ; Header adress
     dd IMAGE_LOAD_BASE                      ; Load adress
@@ -73,12 +82,15 @@ multiboot_header:
     dd 00                                   ; Height: not specified
     dd 00                                   ; Depth: not specified
 %endif
+.end:
+%endif
 
 ; Main loader code
 start:
     ; When use own bootloader
-    jmp     multiboot_entry
+    jmp multiboot_entry
 .end:
+
     ; Multiboot entry
 multiboot_entry:
 
@@ -92,6 +104,10 @@ multiboot_entry:
     ; Reset EFLAGS
     push   0
     popf
+
+    ; Clear flags
+    clc ; Carry flag
+    cld ; Direction flag
 
     ; Pass multiboot arguments as:
     ;     int sys_main(unsigned int magic, void* mb_info)
@@ -110,11 +126,14 @@ hang_loop:
     jmp hang_loop
 .end:
 
-    ; Local data
+; Local data
+section .data
 boot_msg:
     db "Booting...", 0
+.end:
 halt_msg:
     db "Halted.", 0
+.end:
 
 ; Block Started by Symbol
 ; uninitialized data section (zeroed by default)
@@ -124,4 +143,5 @@ section .bss
 stack:
     align 4
     resb STACKSIZE
+.end:
 
