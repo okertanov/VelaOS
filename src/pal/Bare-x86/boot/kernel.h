@@ -20,7 +20,8 @@ extern const uint32_t __bss_start__, __bss_end__;
 
 #define hw_cli()    __asm volatile("cli")
 #define hw_sti()    __asm volatile("sti")
-#define hw_halt()   __asm volatile("hlt");
+#define hw_halt()   __asm volatile("hlt")
+#define hw_reboot() __asm volatile("cli; mov $0, %eax; lidt (%eax); sti; int $0")
 
 int sys_main(unsigned int magic, void* mb_info);
 
