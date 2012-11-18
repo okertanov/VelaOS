@@ -12,4 +12,5 @@ Standard C Library
 * dietlibc
 * klibc
 * Baselibc
+* PDCLib
 
