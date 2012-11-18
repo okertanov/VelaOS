@@ -3,6 +3,23 @@
 #   @license    BSD
 #
 
+SOURCES =   start.c     \
+            gdts.c      \
+            idts.c      \
+            gdt.c       \
+            idt.c       \
+            kernel.c    \
+            video.c     \
+            io.c        \
+            timer.c     \
+            memory.c    \
+            hardware.c  \
+            sched.c     \
+            paravirt.c  \
+            util.c
+
+OBJS = $(patsubst %.c,%.o,$(SOURCES))
+
 all: kernel
 
 kernel: kernel.img
@@ -13,19 +30,7 @@ kernel.img: kernel.elf
 kernel.raw: kernel.elf
 	objcopy $< -O binary $@
 
-kernel.elf: start.o     \
-            gdts.o      \
-            idts.o      \
-            gdt.o       \
-            idt.o       \
-            kernel.o    \
-            video.o     \
-            io.o        \
-            timer.o     \
-            memory.o    \
-            hardware.o  \
-            sched.o     \
-            util.o
+kernel.elf: $(OBJS)
 	ld -g -m elf_i386 -Map kernel.map -T kernel.ld -o $@ $^
 	strip -d $@
 
