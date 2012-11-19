@@ -13,6 +13,8 @@ Standard C Library
 * klibc
 * Baselibc
 * PDCLib
+* eCos
+* EGLIBC
 
 Links
 -----
