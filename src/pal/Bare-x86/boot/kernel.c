@@ -95,3 +95,14 @@ int sys_main(unsigned int magic, void* mb_info)
     return MULTIBOOT_LOADER_MAGIC;
 }
 
+void panick(const char* what)
+{
+    txt_write_to_screens(what, 23, 0, 0x0C);
+    terminate();
+}
+
+void warnk(const char* what)
+{
+    txt_write_to_screens(what, 23, 0, 0x0E);
+}
+

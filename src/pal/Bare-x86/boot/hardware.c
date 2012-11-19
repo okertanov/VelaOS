@@ -17,7 +17,7 @@ void sys_init_hw(void)
     }
     else
     {
-        /*warnk("Warning: sys_init_hw(): ", "Serial port handle invalid.")*/
+        warnk("Warning: sys_init_hw(): " "Invalid serial port handle.");
     }
 }
 
@@ -41,9 +41,6 @@ handle_t sys_init_serial(serial_port_t port)
     uint16_t ioaddr = port;
 
     hw_cli();
-    register_interrupt_handler(IRQ3, &serial_irq3_handler);
-    register_interrupt_handler(IRQ4, &serial_irq4_handler);
-    hw_sti();
 
     if ( ioaddr )
     {
@@ -57,6 +54,11 @@ handle_t sys_init_serial(serial_port_t port)
 
         handle = (handle_t)ioaddr;
     }
+
+    register_interrupt_handler(IRQ3, &serial_irq3_handler);
+    register_interrupt_handler(IRQ4, &serial_irq4_handler);
+
+    hw_sti();
 
     return handle;
 }
@@ -101,7 +103,7 @@ bool sys_serial_write_str(handle_t handle, const char* const str)
 
     if ( pstr )
     {
-        while (pstr)
+        while (*pstr)
         {
             sys_serial_write_char(handle, *(pstr++));
         }

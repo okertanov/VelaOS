@@ -18,6 +18,7 @@ extern uint32_t kernel_version;
 
 extern const uint32_t __image_start__, __image_end__;
 extern const uint32_t __text_start__, __text_end__;
+extern const uint32_t __rodata_start__, __rodata_end__;
 extern const uint32_t __data_start__, __data_end__;
 extern const uint32_t __bss_start__, __bss_end__;
 
@@ -30,4 +31,9 @@ extern const uint32_t __bss_start__, __bss_end__;
 #define hw_reboot() __asm volatile("cli; mov $0, %eax; lidt (%eax); sti; int $0")
 
 int sys_main(unsigned int magic, void* mb_info);
+
+extern void terminate(void);
+
+void panick(const char* what);
+void warnk(const char* what);
 

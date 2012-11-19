@@ -17,15 +17,21 @@ SECTIONS
     {
         __text_start__ = . ;
         *(.text)
-        *(.rodata*)
-        *(.rdata*)
         __text_end__ = . ;
+    }
+
+    .rodata ALIGN (0x1000) :
+    {
+        __rodata_start__ = . ;
+        *(.rodata)
+        *(.rdata)
+         __rodata_end__ = . ;
     }
 
     .data ALIGN (0x1000) :
     {
         __data_start__ = . ;
-        *(.data*)
+        *(.data)
         __data_end__ = . ;
     }
 

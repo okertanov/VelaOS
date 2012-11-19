@@ -9,6 +9,9 @@ bits 32
 ; Making entry point visible to linker
 global start
 
+; Making termination point visible to linker
+global terminate
+
 ; sys_main is defined in kernel.c
 extern sys_main
 
