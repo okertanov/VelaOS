@@ -12,6 +12,9 @@ global start
 ; sys_main is defined in kernel.c
 extern sys_main
 
+; linker externals
+extern __image_start__, __text_start__, __data_end__, __bss_start__, __bss_end__
+
 ; Initial kernel stack space (16Kb)
 STACKSIZE equ 0x4000
 
@@ -33,7 +36,7 @@ MULTIBOOT_HEADER_MAGIC     equ  0x1BADB002
 ; 0x00010003 - not an elf, or
 ; 0x00000003 - an elf executable, or
 ; 0x00010007 - with kludge and video mode info
-MULTIBOOT_HEADER_FLAGS     equ  0x00010007
+MULTIBOOT_HEADER_FLAGS     equ  0x00010003
 
 ; Multiboot checksum required
 MULTIBOOT_HEADER_CHECKSUM  equ -(MULTIBOOT_HEADER_MAGIC + MULTIBOOT_HEADER_FLAGS)
@@ -70,11 +73,11 @@ multiboot_header:
     dd MULTIBOOT_HEADER_FLAGS               ; Flags
     dd MULTIBOOT_HEADER_CHECKSUM            ; Checksum
 %ifdef USE_AOUT_KLUDGE
-    dd IMAGE_LOAD_BASE + multiboot_header   ; Header adress
-    dd IMAGE_LOAD_BASE                      ; Load adress
-    dd 00                                   ; Load end adress: not necessary
-    dd 00                                   ; Bss end adress: not necessary
-    dd IMAGE_LOAD_BASE + multiboot_entry    ; Entry adress
+    dd multiboot_header                     ; Header adress
+    dd __text_start__                       ; Load adress
+    dd __data_end__                         ; Load end adress: not necessary
+    dd __bss_end__                          ; Bss end adress: not necessary
+    dd multiboot_entry                      ; Entry adress
 %endif
 %ifdef USE_GRAPHICS_KLUDGE
     dd  1                                   ; Mode: EGA-standard text mode
