@@ -7,12 +7,19 @@ HOST_PLATFORM=Unknown
 HOST_SYSTEM=$(shell uname -s)
 ifneq (,$(findstring OSX,$(HOST_SYSTEM)))
     HOST_PLATFORM=Posix
+    HOST_POSIX=$(HOST_PLATFORM)
+endif
+ifneq (,$(findstring BSD,$(HOST_SYSTEM)))
+    HOST_PLATFORM=Posix
+    HOST_POSIX=$(HOST_PLATFORM)
 endif
 ifneq (,$(findstring Linux,$(HOST_SYSTEM)))
     HOST_PLATFORM=Posix
+    HOST_POSIX=$(HOST_PLATFORM)
 endif
 ifneq (,$(findstring MINGW,$(HOST_SYSTEM)))
-    HOST_PLATFORM=Win32
+    HOST_PLATFORM=Windows
+    HOST_WINDOWS=$(HOST_PLATFORM)
 endif
 ifeq ($(HOST_PLATFORM),Unknown)
 error build HOST_PLATFORM is undefined

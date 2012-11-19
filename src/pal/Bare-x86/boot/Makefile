@@ -5,26 +5,41 @@
 
 include ../Makefile.common
 
-COMMON_CFLAGS=-g -std=c99 -Wall -Wextra -Werror \
+COMMON_CFLAGS=-g -pipe -std=c99 -Wall -Wextra -Werror \
               -nostdlib -nostdinc -fno-builtin -nostartfiles -nodefaultlibs \
               -fno-stack-protector -fomit-frame-pointer -fno-exceptions \
-              -fno-asynchronous-unwind-tables -fno-unwind-tables
+              -fno-asynchronous-unwind-tables -fno-unwind-tables \
+              -DZENO_KERNEL
 COMMON_LDFLAGS=-g
 COMMON_LDLIBS=
 
-ifdef ARCH_X64
-ARCH_CFLAGS=-m32
-ARCH_LDFLAGS=-m elf_i386
-ARCH_LDLIBS=
-else
-ARCH_CFLAGS=
+ifdef HOST_POSIX
+HOST_CFLAGS=
+HOST_LDFLAGS=
+HOST_LDLIBS=
+endif
+
+ifdef HOST_WINDOWS
+HOST_CFLAGS=-fno-leading-underscore
+HOST_LDFLAGS=
+HOST_LDLIBS=
+endif
+
+ifdef ARCH_X86
+ARCH_CFLAGS=-mtune=native
 ARCH_LDFLAGS=
 ARCH_LDLIBS=
 endif
 
-CFLAGS=$(COMMON_CFLAGS) $(ARCH_CFLAGS)
-LDFLAGS=$(COMMON_LDFLAGS) $(ARCH_LDFLAGS)
-LDLIBS=$(COMMON_LDLIBS) $(ARCH_LDLIBS)
+ifdef ARCH_X64
+ARCH_CFLAGS=-m32 -mtune=native
+ARCH_LDFLAGS=-m elf_i386
+ARCH_LDLIBS=
+endif
+
+CFLAGS=$(COMMON_CFLAGS) $(HOST_CFLAGS) $(ARCH_CFLAGS)
+LDFLAGS=$(COMMON_LDFLAGS) $(HOST_LDFLAGS) $(ARCH_LDFLAGS)
+LDLIBS=$(COMMON_LDLIBS) $(HOST_LDLIBS) $(ARCH_LDLIBS)
 
 SOURCES =   start.c     \
             gdts.c      \

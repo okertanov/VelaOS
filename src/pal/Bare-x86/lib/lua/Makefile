@@ -7,10 +7,17 @@ include ../../Makefile.common
 
 LIB=libzlua.a
 
-CC=gcc
+ifdef HOST_POSIX
 CFLAGS=-O2 -pipe -Wall -Wextra -Werror -DLUA_COMPAT_ALL -DLUA_USE_POSIX
 LDFLAGS=-L./
 LDLIBS=-lm -lzlua
+endif
+
+ifdef HOST_WINDOWS
+CFLAGS=-O2 -pipe -Wall -Wextra -Werror
+LDFLAGS=-L./
+LDLIBS=-lm -lzlua
+endif
 
 SOURCES =   lapi.c      \
             lauxlib.c   \
@@ -62,7 +69,7 @@ zluac: luac.o $(LIB)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	-@rm -f *.o *.a *.so zlua zluac
+	-@rm -f *.o *.a *.so *.exe zlua zluac
 
 .PHONY: all clean
 
