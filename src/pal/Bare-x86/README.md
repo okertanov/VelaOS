@@ -14,3 +14,7 @@ Standard C Library
 * Baselibc
 * PDCLib
 
+Links
+-----
+[Roll your own toy UNIX-clone OS](http://www.jamesmolloy.co.uk/tutorial_html/index.html)
+

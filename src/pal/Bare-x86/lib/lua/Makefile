@@ -6,7 +6,7 @@
 LIB=libzlua.a
 
 CC=gcc
-CFLAGS=-O2 -pipe -Wall -Wextra -Werror -DLUA_COMPAT_ALL
+CFLAGS=-O2 -pipe -Wall -Wextra -Werror -DLUA_COMPAT_ALL -DLUA_USE_POSIX
 LDFLAGS=-L./
 LDLIBS=-lm -lzlua
 

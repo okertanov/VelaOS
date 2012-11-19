@@ -19,3 +19,5 @@ bin/test-micro
 bin/test-mini
 bin/test-tasks
 3rd
+zlua
+zluac

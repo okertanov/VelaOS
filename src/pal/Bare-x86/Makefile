@@ -5,11 +5,13 @@
 
 all:
 	$(MAKE) -C boot $@
-	$(MAKE) -C lib $@
+	$(MAKE) -C lib/syslib $@
+	$(MAKE) -C lib/lua $@
 
 clean:
 	$(MAKE) -C boot $@
-	$(MAKE) -C lib $@
+	$(MAKE) -C lib/syslib $@
+	$(MAKE) -C lib/lua $@
 
 .PHONY: all clean
 

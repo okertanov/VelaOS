@@ -39,7 +39,7 @@ kernel.elf: $(OBJS)
 	nasm -g -f elf -o $@ $<
 
 %.o: %.c
-	gcc -std=c11 -g -m32 -Wall -Wextra -Werror -nostdlib -nostdinc -fno-builtin -nostartfiles -nodefaultlibs -fno-stack-protector -fomit-frame-pointer -fno-exceptions -fno-asynchronous-unwind-tables -fno-unwind-tables -c -o $@ $<
+	gcc -std=c99 -g -m32 -Wall -Wextra -Werror -nostdlib -nostdinc -fno-builtin -nostartfiles -nodefaultlibs -fno-stack-protector -fomit-frame-pointer -fno-exceptions -fno-asynchronous-unwind-tables -fno-unwind-tables -c -o $@ $<
 
 clean:
 	-@rm -f *.bin *.raw *.o *.elf *.img *.map *.lst
