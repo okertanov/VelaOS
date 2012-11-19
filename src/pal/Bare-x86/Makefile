@@ -3,6 +3,8 @@
 #   @license    BSD
 #
 
+include Makefile.common
+
 all:
 	$(MAKE) -C boot $@
 	$(MAKE) -C lib/syslib $@

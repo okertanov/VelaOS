@@ -1,0 +1,45 @@
+#
+#   @copyright  Copyright (C) 2011 Oleg Kertanov <okertanov@gmail.com>
+#   @license    BSD
+#
+
+HOST_PLATFORM=Unknown
+HOST_SYSTEM=$(shell uname -s)
+ifneq (,$(findstring OSX,$(HOST_SYSTEM)))
+    HOST_PLATFORM=Posix
+endif
+ifneq (,$(findstring Linux,$(HOST_SYSTEM)))
+    HOST_PLATFORM=Posix
+endif
+ifneq (,$(findstring MINGW,$(HOST_SYSTEM)))
+    HOST_PLATFORM=Win32
+endif
+ifeq ($(HOST_PLATFORM),Unknown)
+error build HOST_PLATFORM is undefined
+endif
+
+HOST_ARCH=Unknown
+HOST_MACHINE=$(shell uname -m)
+ifeq ($(HOST_MACHINE), x86_64)
+HOST_ARCH=x64
+ARCH_X64=$(HOST_ARCH)
+else
+HOST_ARCH=x86
+ARCH_X86=$(HOST_ARCH)
+endif
+
+CROSS=
+
+CC=$(CROSS)gcc
+LD=$(CROSS)ld
+AR=$(CROSS)ar
+AS=$(CROSS)as
+STRIP=$(CROSS)strip
+RANLIB=$(CROSS)ranlib
+OBJCOPY=$(CROSS)objcopy
+OBJDUMP=$(CROSS)objdump
+RM=rm
+MV=mv
+CAT=cat
+NASM=$(CROSS)nasm
+

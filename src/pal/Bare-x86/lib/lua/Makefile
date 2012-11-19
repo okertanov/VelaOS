@@ -3,6 +3,8 @@
 #   @license    BSD
 #
 
+include ../../Makefile.common
+
 LIB=libzlua.a
 
 CC=gcc
