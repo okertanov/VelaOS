@@ -11,7 +11,6 @@
 
 extern const uint32_t __image_start__, __image_end__;
 extern const uint32_t __text_start__, __text_end__;
-extern const uint32_t __rodata_start__, __rodata_end__;
 extern const uint32_t __data_start__, __data_end__;
 extern const uint32_t __bss_start__, __bss_end__;
 
