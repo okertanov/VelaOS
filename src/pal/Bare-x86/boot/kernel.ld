@@ -16,7 +16,6 @@ SECTIONS
     .text ALIGN (0x1000) :
     {
         __text_start__ = . ;
-        start.o(.text)
         *(.text)
         __text_end__ = . ;
     }
