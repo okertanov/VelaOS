@@ -11,7 +11,7 @@
 #include "idt.h"
 #include "timer.h"
 #include "memory.h"
-#include "hardware.h"
+#include "serial.h"
 #include "sched.h"
 #include "paravirt.h"
 #include "event.h"
@@ -42,22 +42,32 @@ int sys_main(unsigned int magic, void* mb_info)
             (char*)(((unsigned long*)mb_info)[16]) :
             "Unknown bootloader.";
 
-        /* Resources init: GDT, IDT */
+        /* Resources initialization */
         sys_init_gtd();
         sys_init_idt();
         sys_init_timer();
-        sys_init_mem();
-        sys_init_hw();
-        sys_init_sched();
+        sys_init_memory();
 
         /* Then enable interrupts */
         hw_sti();
 
+        /* Continue initialization */
+        sys_init_serial_ports();
+        sys_init_sched();
+
+        /* Setup output devices: text-mode video, serial line */
+        handle_t hserial = sys_open_serial(SERIAL_COM1);
+
         /* Display bootloader's name */
         txt_write_to_screens(mb_loader_name, 0, 0, 0x02);
+        sys_serial_write_str(hserial, mb_loader_name);
+        sys_serial_write_str(hserial, "\n");
 
         /* Display status */
-        txt_write_to_screens("Zeno: Load complete.", 1, 0, 0x02);
+        static char* load_complete_str = "Zeno: Load complete.";
+        txt_write_to_screens(load_complete_str, 1, 0, 0x02);
+        sys_serial_write_str(hserial, load_complete_str);
+        sys_serial_write_str(hserial, "\n");
 
         /* Display memory */
         char buff[32] = {0};
@@ -72,7 +82,10 @@ int sys_main(unsigned int magic, void* mb_info)
         txt_write_to_screens(itoa(mb_boot_device, buff, 16), 4, 15, 0x07);
 
         /* Display simple menu */
-        txt_write_to_screens("(s) shell, (t) trap, (r) reboot, (h) halt", 24, 0, 0x07);
+        static char* simple_menu_str = "(s) shell, (t) trap, (r) reboot, (h) halt";
+        txt_write_to_screens(simple_menu_str, 24, 0, 0x07);
+        sys_serial_write_str(hserial, simple_menu_str);
+        sys_serial_write_str(hserial, "\n");
 
         /* OS Loop */
         uint64_t counter = 0;

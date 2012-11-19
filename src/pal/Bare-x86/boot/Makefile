@@ -51,7 +51,7 @@ SOURCES =   start.c     \
             io.c        \
             timer.c     \
             memory.c    \
-            hardware.c  \
+            serial.c    \
             sched.c     \
             paravirt.c  \
             event.c     \
@@ -83,7 +83,7 @@ clean:
 	-@$(RM) -f *.bin *.raw *.o *.elf *.img *.map *.lst
 
 run: kernel.img
-	qemu -no-reboot -m 512 -vga std -s -boot c -hda $<
+	qemu -no-reboot -m 512 -vga std -s -serial stdio -boot c -hda $<
 #	qemu -vga std -s -kernel kernel.elf
 
 help:

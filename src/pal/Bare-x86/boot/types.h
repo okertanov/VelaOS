@@ -37,4 +37,8 @@ typedef _Bool               bool;
     System types
 */
 typedef uint32_t            handle_t;
+typedef int32_t             result_t;
+
+#define R_ERR   0
+#define R_OK    1
 

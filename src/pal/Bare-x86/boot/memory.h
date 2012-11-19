@@ -7,5 +7,5 @@
 
 #include "types.h"
 
-void sys_init_mem(void);
+void sys_init_memory(void);
 
