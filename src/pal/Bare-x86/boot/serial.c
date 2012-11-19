@@ -130,15 +130,19 @@ result_t sys_close_serial(__attribute__((unused)) handle_t handle)
 uint8_t sys_serial_read_char(handle_t handle)
 {
     uint16_t ioaddr = ports[handle].ioaddr;
+    uint8_t ch = 0;
 
-    while( 0 == (sys_inb(ioaddr + 5) & 0x01) )
+    /*while( 0 == (sys_inb(ioaddr + 5) & 0x01) )
     {
         hw_relax();
+    }*/
+
+    if( 0 != (sys_inb(ioaddr + 5) & 0x01) )
+    {
+        ch = sys_inb(ioaddr);
     }
 
-    uint8_t c = sys_inb(ioaddr);
-
-    return c;
+    return ch;
 }
 
 char* sys_serial_read_str(__attribute__((unused)) handle_t handle)

@@ -21,13 +21,6 @@ static void timer_irq0_handler(__attribute__((unused)) registers_t *regs)
     /* XXX: For debug only */
     char buffer[32] = {0};
     txt_write_to_screens(itoa(timer_tick_count, buffer, 10), 1, 22, 0x0A);
-
-    /* For debug only */
-    if ( timer_tick_count > 1000 )
-    {
-        timer_tick_count = 0;
-        hw_reboot();
-    }
 }
 
 void sys_init_timer(void)

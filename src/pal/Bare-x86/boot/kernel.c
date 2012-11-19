@@ -94,6 +94,32 @@ int sys_main(unsigned int magic, void* mb_info)
         {
             /* Show progress */
             txt_write_to_screens(dashes[counter++ % 4], 1, 21, 0x0A);
+
+            /* Read early serial */
+            uint8_t ch = sys_serial_read_char(hserial);
+
+            /* Then echo it back */
+            /* XXX: For debug only */
+            if ( ch )
+                sys_serial_write_char(hserial, ch);
+
+            switch ( ch )
+            {
+                case 's':
+                    sys_serial_write_str(hserial, "shell$ ");
+                    break;
+                case 't':
+                    terminate();
+                    break;
+                case 'r':
+                    hw_reboot();
+                    break;
+                case 'h':
+                    panick("System halted.");
+                    break;
+            }
+
+            /* Idle */
             hw_halt();
         }
     }
