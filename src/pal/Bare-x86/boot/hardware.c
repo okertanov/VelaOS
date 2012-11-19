@@ -83,6 +83,11 @@ uint8_t sys_serial_read_char(handle_t handle)
 {
     uint16_t ioaddr = (uint16_t)(handle);
 
+    while( 0 == (sys_inb(ioaddr + 5) & 0x01) )
+    {
+        hw_relax();
+    }
+
     uint8_t c = sys_inb(ioaddr);
 
     return c;
@@ -91,6 +96,11 @@ uint8_t sys_serial_read_char(handle_t handle)
 bool sys_serial_write_char(handle_t handle, uint8_t c)
 {
     uint16_t ioaddr = (uint16_t)(handle);
+
+    while( 0 == (sys_inb(ioaddr + 5) & 0x20) )
+    {
+        hw_relax();
+    }
 
     sys_outb(ioaddr, c);
 
