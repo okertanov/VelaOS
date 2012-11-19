@@ -119,7 +119,7 @@ void irq_handler(registers_t *regs)
 {
     if (interrupt_handlers[regs->int_no] != 0)
     {
-        interrupt_handlers[regs->int_no] (regs);
+        interrupt_handlers[regs->int_no](regs);
     }
 
     if (regs->int_no >= 40)

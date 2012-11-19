@@ -16,6 +16,9 @@
 #include "paravirt.h"
 #include "event.h"
 
+char* kernel_name = KERNEL_NAME;
+uint32_t kernel_version = KERNEL_VERSION;
+
 int sys_main(unsigned int magic, void* mb_info)
 {
     /* Clear screen */

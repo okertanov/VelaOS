@@ -4,13 +4,13 @@
 //
 
 #include "timer.h"
+#include "kernel.h"
 #include "io.h"
 #include "idt.h"
 
 /* For debug only */
 #include "video.h"
 #include "util.h"
-#include "kernel.h"
 
 static uint32_t timer_tick_count = 0;
 
