@@ -6,6 +6,7 @@
 *.elf
 *.hex
 *.bin
+*.raw
 *.img
 *.map
 *.lst

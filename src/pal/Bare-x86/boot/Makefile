@@ -63,11 +63,11 @@ all: kernel
 
 kernel: kernel.img
 
-kernel.img: kernel.elf
+kernel.img: kernel.raw
 	$(CAT) ../bin/grub/stage1 ../bin/grub/stage2 ../bin/grub/pad750 $< > $@
 
 kernel.raw: kernel.elf
-	$(OBJCOPY) $< -O binary $@
+	$(OBJCOPY) -O binary -S -j .text -j .rodata -j .data -j .bss --set-section-flags .bss=alloc,load,contents $< $@
 
 kernel.elf: $(OBJS)
 	$(LD) $(LDFLAGS) -Map kernel.map -T kernel.ld -o $@ $^
