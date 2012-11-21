@@ -69,9 +69,7 @@ sudo chmod 700 /mnt/remote/root
 sudo chmod 777 /mnt/remote/tmp
 sudo chmod +t /mnt/remote/tmp
 
-sudo cp ../grub/menu.lst /mnt/remote/boot/grub
-sudo cp ../grub/stage1 /mnt/remote/boot/grub
-sudo cp ../grub/stage2 /mnt/remote/boot/grub
+sudo cp ../grub/grub.cfg /mnt/remote/boot/grub
 sudo cp ../../boot/kernel.raw /mnt/remote/boot
 sudo sync
 
