@@ -1,0 +1,12 @@
+#
+# Grub Legacy configuration
+#
+# ftp://alpha.gnu.org/gnu/grub/
+#
+
+default 0
+timeout 5
+title Zeno
+root  (hd0,0)
+kernel /boot/kernel.raw
+
