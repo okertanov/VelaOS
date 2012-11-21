@@ -8,6 +8,7 @@
 *.bin
 *.raw
 *.img
+*.hdd
 *.map
 *.lst
 *.tgz

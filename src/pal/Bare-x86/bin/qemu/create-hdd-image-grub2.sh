@@ -74,7 +74,7 @@ sudo cp ../../boot/kernel.raw /mnt/remote/boot
 sudo sync
 
 sudo dumpe2fs -x /dev/loop1
-sudo stat /mnt/remote/boot/grub/stage2
+sudo stat /mnt/remote/boot/grub/grub.cfg
 
 sudo grub-install --root-directory=/mnt/remote --no-floppy --force /dev/loop0
 
