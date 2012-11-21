@@ -1,5 +1,9 @@
 #!/bin/sh
 
+#
+# http://wiki.osdev.org/Loopback_Device
+#
+
 set -e -u
 
 # Cleanup
@@ -8,39 +12,33 @@ sudo losetup -d /dev/loop1 || true
 sudo losetup -d /dev/loop0 || true
 
 # Create image
-dd if=/dev/zero of=./kernel-image.hdd bs=512 count=8192
+dd if=/dev/zero of=kernel-image.hdd bs=516096 count=8
 
 # Setup loopback for the disk
 sudo losetup /dev/loop0 kernel-image.hdd
 sudo dd if=/dev/zero of=/dev/loop0 || true
 
 # Partitions
-sudo echo "x
-c
-261
-r
+sudo echo "
 n
 p
 1
-32
-261
-a
-1
+63
+8063
 w
-" |sudo fdisk /dev/loop0 || true
+" |sudo fdisk -u -C8 -S63 -H16 /dev/loop0 || true
 
 # Update partitions
 sudo partprobe
 
 # Setup loopback for the partition
-#sudo losetup -o 32256 /dev/loop1 /dev/loop0
-sudo losetup -o 305235 /dev/loop1 /dev/loop0
+sudo losetup -o 32256 /dev/loop1 /dev/loop0
 
 # Update partitions
 sudo partprobe
 
 # Create filesystem
-sudo mkfs.ext2 -m0 -b 1024 -L Zeno /dev/loop1
+sudo mkfs.ext2 -m0 -L Zeno /dev/loop1
 sudo tune2fs -c 0 -i 0 -m 0 -r 0 -T now -U random /dev/loop1
 
 # Update partitions
@@ -69,16 +67,24 @@ sudo chmod 700 /mnt/remote/root
 sudo chmod 777 /mnt/remote/tmp
 sudo chmod +t /mnt/remote/tmp
 
-sudo cp ../grub/grub.cfg /mnt/remote/boot/grub
-sudo cp ../../boot/kernel.raw /mnt/remote/boot
+sudo cp ../grub/grub.cfg /mnt/remote/boot/grub/
+sudo cp ../grub/device.map /mnt/remote/boot/grub/
+sudo cp ../grub/boot.img /mnt/remote/boot/grub/
+sudo cp ../../boot/kernel.raw /mnt/remote/boot/
 sudo sync
 
 sudo dumpe2fs -x /dev/loop1
 sudo stat /mnt/remote/boot/grub/grub.cfg
+sudo stat /mnt/remote/boot/grub/device.map
 
-sudo grub-install --root-directory=/mnt/remote --no-floppy --force /dev/loop0
+sudo mount --bind /dev /mnt/remote/dev
 
-sudo umount /dev/loop1
+sudo grub-mkimage -p /mnt/remote/boot/grub -O i386-pc -o /mnt/remote/boot/grub/core.img ext2
+sudo grub-setup -d /mnt/remote/boot/grub --force /dev/loop0
+
+sudo umount /mnt/remote/dev
+sudo umount /mnt/remote
+
 sudo losetup -d /dev/loop1
 sudo losetup -d /dev/loop0
 

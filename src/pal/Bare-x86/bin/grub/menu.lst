@@ -7,6 +7,6 @@
 default 0
 timeout 5
 title Zeno
-root  (hd0,0)
+root  (hd0,1)
 kernel /boot/kernel.raw
 
