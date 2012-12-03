@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #
 # http://wiki.osdev.org/Loopback_Device
@@ -7,32 +7,49 @@
 set -e -u
 
 # Cleanup
-rm -f kernel-image.hdd
+sudo umount /mnt/remote/dev || true
+sudo umount /mnt/remote || true
 sudo losetup -d /dev/loop1 || true
 sudo losetup -d /dev/loop0 || true
+rm -f kernel-image.hdd
+
+#
+# Variables
+#
+
+
+# CHS
+DSK_BYTES_PER_SECTOR=512
+DSK_CYLINDERS=256
+DSK_HEADS=16
+DSK_SECTORS=63
+let DSK_SIZE_BYTES="$DSK_BYTES_PER_SECTOR * $DSK_SECTORS * $DSK_HEADS * $DSK_CYLINDERS"
+let DSK_SIZE_BLOCKS="$DSK_SIZE_BYTES / $DSK_BYTES_PER_SECTOR"
+let FS_OFFSET="2048 * $DSK_BYTES_PER_SECTOR"
+
+echo "$DSK_SIZE_BYTES - $FS_OFFSET"
 
 # Create image
-dd if=/dev/zero of=kernel-image.hdd bs=516096 count=8
+dd if=/dev/zero of=kernel-image.hdd bs=$DSK_BYTES_PER_SECTOR count=$DSK_SIZE_BLOCKS
 
 # Setup loopback for the disk
 sudo losetup /dev/loop0 kernel-image.hdd
-sudo dd if=/dev/zero of=/dev/loop0 || true
 
 # Partitions
 sudo echo "
 n
 p
 1
-63
-8063
+2048
+
 w
-" |sudo fdisk -u -C8 -S63 -H16 /dev/loop0 || true
+" |sudo fdisk -u -C$DSK_CYLINDERS -H$DSK_HEADS -S$DSK_SECTORS /dev/loop0 || true
 
 # Update partitions
 sudo partprobe
 
 # Setup loopback for the partition
-sudo losetup -o 32256 /dev/loop1 /dev/loop0
+sudo losetup -o $FS_OFFSET /dev/loop1 /dev/loop0
 
 # Update partitions
 sudo partprobe
@@ -69,26 +86,26 @@ sudo chmod +t /mnt/remote/tmp
 
 sudo cp ../grub/grub.cfg /mnt/remote/boot/grub/
 sudo cp ../grub/device.map /mnt/remote/boot/grub/
-sudo cp ../grub/boot.img /mnt/remote/boot/grub/
 sudo cp ../../boot/kernel.raw /mnt/remote/boot/
 sudo sync
 
-sudo dumpe2fs -x /dev/loop1
-sudo stat /mnt/remote/boot/grub/grub.cfg
-sudo stat /mnt/remote/boot/grub/device.map
+#sudo dumpe2fs -x /dev/loop1
+#sudo stat /mnt/remote/boot/grub/grub.cfg
+#sudo stat /mnt/remote/boot/grub/device.map
 
 sudo mount --bind /dev /mnt/remote/dev
 
-sudo grub-mkimage -p /mnt/remote/boot/grub -O i386-pc -o /mnt/remote/boot/grub/core.img ext2
-sudo grub-setup -d /mnt/remote/boot/grub --force /dev/loop0
+#sudo grub-mkimage -p /mnt/remote/boot/grub -O i386-pc -o /mnt/remote/boot/grub/core.img ext2 multiboot normal
+#sudo grub-setup -d /mnt/remote/boot/grub /dev/loop0
+sudo grub-install --boot-directory=/mnt/remote/boot --no-floppy --recheck --modules="part_msdos ext2 multiboot" /dev/loop0
 
 sudo umount /mnt/remote/dev
 sudo umount /mnt/remote
 
-sudo losetup -d /dev/loop1
-sudo losetup -d /dev/loop0
-
-echo "Done."
+sudo losetup -d /dev/loop1 || true
+sudo losetup -d /dev/loop0 || true
 
 tar czf ../../kernel-image.hdd.tgz ./kernel-image.hdd
+
+echo "Done."
 
