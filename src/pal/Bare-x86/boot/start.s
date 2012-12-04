@@ -12,6 +12,9 @@ global start
 ; Making termination point visible to linker
 global terminate
 
+; Making hypercall_page point visible to linker
+global hypercall_page
+
 ; sys_main is defined in kernel.c
 extern sys_main
 
@@ -19,7 +22,10 @@ extern sys_main
 extern __image_start__, __text_start__, __data_end__, __bss_start__, __bss_end__
 
 ; Initial kernel stack space (16Kb)
-STACKSIZE equ 0x4000
+STACK_SIZE equ 0x4000
+
+; Page size (16k)
+PAGE_SIZE equ 0x4000
 
 ; Load base address, must be >= 1Mb
 ; Extended memory:
@@ -104,7 +110,7 @@ multiboot_entry:
     cli
 
     ; Set up the stack
-    mov esp, stack + STACKSIZE
+    mov esp, stack + STACK_SIZE
     mov ebp, esp
 
     ; Reset EFLAGS
@@ -132,6 +138,24 @@ hang_loop:
     jmp hang_loop
 .end:
 
+; XEN hypercall page
+hypercall_page:
+    align 4
+    resb PAGE_SIZE
+.end:
+
+; XEN PV ELF notes. TODO: section .note.Xen
+section __xen_guest
+    db "GUEST_OS=Zeno", 0
+    db ",XEN_VER=xen-4.0", 0
+    db ",VIRT_BASE=0x00100000", 0
+    db ",ELF_PADDR_OFFSET=0x0", 0
+    db ",HYPERCALL_PAGE=0x00110000", 0
+    db ",PAE=yes", 0
+    db ",LOADER=generic", 0
+    db 0
+.end:
+
 ; Local data
 section .data
 boot_msg:
@@ -148,6 +172,6 @@ section .bss
 ; Reserve 16k stack on a doubleword boundary
 stack:
     align 4
-    resb STACKSIZE
+    resb STACK_SIZE
 .end:
 

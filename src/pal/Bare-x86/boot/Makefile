@@ -67,7 +67,7 @@ kernel.img: kernel.raw
 	$(CAT) ../bin/grub/stage1 ../bin/grub/stage2 ../bin/grub/pad750 $< > $@
 
 kernel.raw: kernel.elf
-	$(OBJCOPY) -O binary -S -j .text -j .rodata -j .rdata -j .data -j .bss --set-section-flags .bss=alloc,load,contents $< $@
+	$(OBJCOPY) -O binary -S -j .text -j __xen_guest -j .rodata -j .rdata -j .data -j .bss --set-section-flags .bss=alloc,load,contents $< $@
 
 kernel.elf: $(OBJS)
 	$(LD) $(LDFLAGS) -Map kernel.map -T kernel.ld -o $@ $^
