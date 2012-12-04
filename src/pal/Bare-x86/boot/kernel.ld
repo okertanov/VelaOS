@@ -77,6 +77,16 @@ SECTIONS
         __bss_end__ = . ;
     }
 
+    /DISCARD/ :
+    {
+        *(.comment*)
+        *(.debug*)
+        *(.eh_frame*)
+        *(.rel.dyn*)
+        *(.iplt*)
+        *(.igot.plt*)
+    }
+
     .end ALIGN (0x1000) :
     {
         __image_end__ = . ;
