@@ -13,7 +13,7 @@ SECTIONS
 
     __image_start__ = . ;
 
-    .text 0x00100000 ALIGN (0x1000) :
+    .text ALIGN (0x1000) :
     {
         __text_start__ = . ;
         *(.text)
@@ -27,14 +27,18 @@ SECTIONS
         __xen_guest_end__ = . ;
     }
 
-    .xen_shared_info 0x00104000 ALIGN (0x4000) :
+    . = 0x00104000;
+
+    .xen_shared_info ALIGN (0x4000) :
     {
         __xen_shared_info_start__ = . ;
         *(.xen_shared_info)
         __xen_shared_info_end__ = . ;
     }
 
-    .xen_hypercall_page 0x00108000 ALIGN (0x4000) :
+    . = 0x00108000;
+
+    .xen_hypercall_page ALIGN (0x4000) :
     {
         __xen_hypercall_page_start__ = . ;
         *(.xen_hypercall_page)
