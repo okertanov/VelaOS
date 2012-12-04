@@ -115,6 +115,7 @@ sudo cp ../grub/device.map /mnt/remote/boot/grub/
 sudo cp ../grub/grub.cfg /mnt/remote/boot/grub/
 sudo cp ../grub/menu.lst /mnt/remote/boot/grub/
 sudo cp ../../boot/kernel.raw /mnt/remote/boot/
+sudo cp ../../boot/kernel.elf /mnt/remote/boot/
 
 #
 # Sync FS
