@@ -131,6 +131,7 @@ multiboot_entry:
 
     ; Then call kernel's main code
     call sys_main
+.end:
 
     ; Terminate
 terminate:
@@ -146,8 +147,8 @@ hang_loop:
 section __xen_guest
     db "GUEST_OS=Zeno",
     db ",XEN_VER=xen-3.0",
-    db ",VIRT_BASE=0x00000000",
-    db ",ELF_PADDR_OFFSET=0x00000000",
+    db ",VIRT_BASE=0x00100000",
+    db ",ELF_PADDR_OFFSET=0x00100000",
     db ",HYPERCALL_PAGE=0x02",
     db ",PAE=yes",
     db ",LOADER=generic"
