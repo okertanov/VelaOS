@@ -140,7 +140,7 @@ sudo mount --bind /dev /mnt/remote/dev
 #sudo grub-mkimage -p /mnt/remote/boot/grub -O i386-pc -o /mnt/remote/boot/grub/core.img ext2 multiboot normal
 #sudo grub-setup -d /mnt/remote/boot/grub /dev/loop0
 #sudo grub-install --boot-directory=/mnt/remote/boot --no-floppy --recheck --modules="part_msdos ext2 multiboot" /dev/loop0
-sudo grub-install --root-directory=/mnt/remote/ --no-floppy --recheck --modules="part_msdos ext2 multiboot" /dev/loop0
+sudo grub-install --root-directory=/mnt/remote/ --no-floppy --recheck --modules="part_msdos ext2 elf multiboot normal" /dev/loop0
 
 #
 # Unbind /dev & target partition
