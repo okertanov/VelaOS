@@ -146,15 +146,14 @@ hypercall_page:
 
 ; XEN PV ELF notes. TODO: section .note.Xen
 section __xen_guest
-    db "GUEST_OS=Zeno", 0
-    db ",XEN_VER=xen-4.0", 0
-    db ",VIRT_BASE=0x00100000", 0
-    db ",ELF_PADDR_OFFSET=0x0", 0
-    db ",HYPERCALL_PAGE=0x00110000", 0
-    db ",PAE=yes", 0
-    db ",LOADER=generic", 0
+    db "GUEST_OS=Zeno",
+    db ",XEN_VER=xen-3.0",
+    db ",VIRT_BASE=0x00",
+    db ",ELF_PADDR_OFFSET=0x00",
+    db ",HYPERCALL_PAGE=0x02",
+    db ",PAE=yes",
+    db ",LOADER=generic"
     db 0
-.end:
 
 ; Local data
 section .data
