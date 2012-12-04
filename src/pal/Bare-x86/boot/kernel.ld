@@ -13,11 +13,32 @@ SECTIONS
 
     __image_start__ = . ;
 
-    .text ALIGN (0x1000) :
+    .text 0x00100000 ALIGN (0x1000) :
     {
         __text_start__ = . ;
         *(.text)
         __text_end__ = . ;
+    }
+
+    __xen_guest ALIGN (0x1000) :
+    {
+        __xen_guest_start__ = . ;
+        *(__xen_guest)
+        __xen_guest_end__ = . ;
+    }
+
+    .xen_shared_info 0x00104000 ALIGN (0x4000) :
+    {
+        __xen_shared_info_start__ = . ;
+        *(.xen_shared_info)
+        __xen_shared_info_end__ = . ;
+    }
+
+    .xen_hypercall_page 0x00108000 ALIGN (0x4000) :
+    {
+        __xen_hypercall_page_start__ = . ;
+        *(.xen_hypercall_page)
+        __xen_hypercall_page_end__ = . ;
     }
 
     .rodata ALIGN (0x1000) :
@@ -33,6 +54,13 @@ SECTIONS
         __data_start__ = . ;
         *(.data)
         __data_end__ = . ;
+    }
+
+    .note ALIGN (0x1000) :
+    {
+        __note_start__ = . ;
+        *(.note.*)
+        __note_end__ = . ;
     }
 
     .bss ALIGN (0x1000) :

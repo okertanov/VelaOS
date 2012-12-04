@@ -62,6 +62,9 @@ MULTIBOOT_HEADER_CHECKSUM  equ -(MULTIBOOT_HEADER_MAGIC + MULTIBOOT_HEADER_FLAGS
 ; Use raw entry for non-multiboot loaders
 %define USE_RAW_ENTRY           1
 
+; Use XEN PV kernel
+%define USE_XEN                 1
+
 ; Code section
 section .text
 
@@ -138,22 +141,32 @@ hang_loop:
     jmp hang_loop
 .end:
 
-; XEN hypercall page
-hypercall_page:
-    align 4
-    resb PAGE_SIZE
-.end:
-
+%ifdef USE_XEN
 ; XEN PV ELF notes. TODO: section .note.Xen
 section __xen_guest
     db "GUEST_OS=Zeno",
     db ",XEN_VER=xen-3.0",
-    db ",VIRT_BASE=0x00",
-    db ",ELF_PADDR_OFFSET=0x00",
+    db ",VIRT_BASE=0x00000000",
+    db ",ELF_PADDR_OFFSET=0x00000000",
     db ",HYPERCALL_PAGE=0x02",
     db ",PAE=yes",
     db ",LOADER=generic"
     db 0
+
+; XEN shared info page
+section .xen_shared_info
+shared_info:
+    align 4
+    resb PAGE_SIZE
+.end:
+
+; XEN hypercall page
+section .xen_hypercall_page
+hypercall_page:
+    align 4
+    resb PAGE_SIZE
+.end:
+%endif ; USE_XEN
 
 ; Local data
 section .data
