@@ -6,7 +6,12 @@
 
 default 0
 timeout 5
-title Zeno
+
+title "Zeno Elf"
 root  (hd0,1)
 kernel /boot/kernel.elf
+
+title "Zeno Raw"
+root  (hd0,1)
+kernel /boot/kernel.raw
 
