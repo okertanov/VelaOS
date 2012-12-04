@@ -157,15 +157,11 @@ section __xen_guest
 ; XEN shared info page
 section .xen_shared_info
 shared_info:
-    align 4
-    resb PAGE_SIZE
 .end:
 
 ; XEN hypercall page
 section .xen_hypercall_page
 hypercall_page:
-    align 4
-    resb PAGE_SIZE
 .end:
 %endif ; USE_XEN
 

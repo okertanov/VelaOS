@@ -33,6 +33,7 @@ SECTIONS
     {
         __xen_shared_info_start__ = . ;
         *(.xen_shared_info)
+        . += 0x4000;
         __xen_shared_info_end__ = . ;
     }
 
@@ -42,6 +43,7 @@ SECTIONS
     {
         __xen_hypercall_page_start__ = . ;
         *(.xen_hypercall_page)
+        . += 0x4000;
         __xen_hypercall_page_end__ = . ;
     }
 
