@@ -31,7 +31,7 @@ extern const uint32_t __bss_start__, __bss_end__;
 #define hw_reboot() __asm volatile("cli; mov $0, %eax; lidt (%eax); sti; int $0")
 #define hw_relax()  __asm volatile("rep; nop")
 
-int sys_main(unsigned int magic, void* mb_info);
+int sys_main(unsigned int magic, void* mb_info, void* xen_start_info);
 
 extern void terminate(void);
 
