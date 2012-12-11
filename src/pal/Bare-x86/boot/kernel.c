@@ -19,7 +19,7 @@
 char* kernel_name = KERNEL_NAME;
 uint32_t kernel_version = KERNEL_VERSION;
 
-int sys_main(unsigned int magic, void* mb_info)
+int sys_main(unsigned int magic, void* mb_info, void* xen_start_info)
 {
     /* Clear screen */
     txt_clear_screen();

@@ -125,7 +125,8 @@ multiboot_entry:
     cld ; Direction flag
 
     ; Pass multiboot arguments as:
-    ;     int sys_main(unsigned int magic, void* mb_info)
+    ;     int sys_main(unsigned int magic, void* mb_info, void* xen_start_info)
+    push esi ; XEN info structure
     push ebx ; Multiboot info structure
     push eax ; Multiboot magic number
 
