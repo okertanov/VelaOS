@@ -11,7 +11,7 @@ COMMON_CFLAGS=-g -pipe -std=c99 -Wall -Wextra -Werror \
               -fno-asynchronous-unwind-tables -fno-unwind-tables \
               -ffreestanding -fno-hosted \
               -I../lib \
-              -DZENO_KERNEL -DZENO_XEN
+              -DZENO_KERNEL
 COMMON_LDFLAGS=-g
 COMMON_LDLIBS=
 
