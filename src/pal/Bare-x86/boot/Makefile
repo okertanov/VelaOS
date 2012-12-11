@@ -10,7 +10,8 @@ COMMON_CFLAGS=-g -pipe -std=c99 -Wall -Wextra -Werror \
               -fno-stack-protector -fomit-frame-pointer -fno-exceptions \
               -fno-asynchronous-unwind-tables -fno-unwind-tables \
               -ffreestanding -fno-hosted \
-              -DZENO_KERNEL
+              -I../lib \
+              -DZENO_KERNEL -DZENO_XEN
 COMMON_LDFLAGS=-g
 COMMON_LDLIBS=
 

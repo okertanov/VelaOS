@@ -9,12 +9,12 @@
 #include "io.h"
 #include "gdt.h"
 #include "idt.h"
-#include "timer.h"
 #include "memory.h"
-#include "serial.h"
-#include "sched.h"
-#include "paravirt.h"
 #include "event.h"
+#include "timer.h"
+#include "serial.h"
+#include "paravirt.h"
+#include "sched.h"
 
 char* kernel_name = KERNEL_NAME;
 uint32_t kernel_version = KERNEL_VERSION;
