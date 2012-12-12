@@ -33,6 +33,7 @@ Links
 [jamesmolloy.co.uk: Roll your own toy UNIX-clone OS](http://www.jamesmolloy.co.uk/tutorial_html/index.html)  
 [Hello from a libc-free world! (Part 2)](https://blogs.oracle.com/ksplice/entry/hello_from_a_libc_free1)  
 [The Operating System resource center](http://www.nondot.org/sabre/os/articles)  
+[NetBSD/xen Howto](http://www.netbsd.org/ports/xen/howto.html#netbsd-dom0)  
 
 ### osdev.org
 [Projects](http://wiki.osdev.org/Projects)  
@@ -72,6 +73,7 @@ Links
 ### XEN Mini-OS
 [Erlang on xen](http://erlangonxen.org/)  
 [wiki.xen.org: Mini-OS-DevNotes](http://wiki.xen.org/wiki/Mini-OS-DevNotes)  
+[A tour of the Mini-OS kernel](http://www.cs.uic.edu/~spopuri/minios.html)  
 [How to run Redis natively on Xen](http://openfoo.org/blog/redis-native-xen.html)  
 [github: avsm/xen-minios](https://github.com/avsm/xen-minios)  
 [github: avsm/mirage](https://github.com/avsm/mirage)  
