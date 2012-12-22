@@ -160,6 +160,8 @@ ARMv8 - Will support 64-bit
 
 [prattmic / stm32f4-templates](https://github.com/prattmic/stm32f4-templates)
 
+[Применение printf в stm32f4](http://we.easyelectronics.ru/STM32/primenenie-printf-v-stm32f4.html)
+
 
 ### Debian amd Ubuntu cross-compilation
 [Debian: ARM Port](http://www.debian.org/ports/arm/)
