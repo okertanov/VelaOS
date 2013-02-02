@@ -19,6 +19,9 @@ Standard C Library
 Links
 -----
 
+### TODO
+[Dive into ELF files using readelf command](http://mylinuxbook.com/readelf-command/)  
+
 ### General topics
 [Writing kernels that boot with Qemu and Grub - a tutorial](http://www.cs.vu.nl/~herbertb/misc/writingkernels.txt)  
 [stackoverflow: What are some resources for getting started in operating system development?](http://stackoverflow.com/questions/43180/what-are-some-resources-for-getting-started-in-operating-system-development)  
@@ -103,5 +106,4 @@ Links
 [github.com/klange/osdev](https://github.com/klange/osdev)  
 [OpenMirage - a cloud programming platform](http://www.openmirage.org/)  
 [Эмуляционные домены Xen](http://xgu.ru/wiki/%D0%AD%D0%BC%D1%83%D0%BB%D1%8F%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5_%D0%B4%D0%BE%D0%BC%D0%B5%D0%BD%D1%8B_Xen)  
-
 
