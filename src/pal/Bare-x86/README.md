@@ -38,6 +38,7 @@ Links
 [The magic fields of Multiboot header](http://www.gnu.org/software/grub/manual/multiboot/html_node/Header-magic-fields.html)  
 [Multiboot Standard Version 0.6](http://www.uruk.org/orig-grub/boot-proposal.html)  
 [Lisp-based OSes](http://linuxfinances.info/info/lisposes.html)  
+[Your own GNU operating system](http://gownos.blogspot.com/)  
 
 ### osdev.org
 [Projects](http://wiki.osdev.org/Projects)  
