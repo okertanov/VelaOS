@@ -266,6 +266,8 @@ ARMv8 - Will support 64-bit
 
 [The FreeRTOS Project](http://www.freertos.org/)
 
+[XINU stands for Xinu Is Not Unix ](http://www.xinu.cs.purdue.edu/)
+
 
 ### #Embedded Languages
 [GitHub: Embedded Lua](https://github.com/elua/elua)
