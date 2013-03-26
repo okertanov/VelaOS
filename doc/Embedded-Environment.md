@@ -268,6 +268,7 @@ ARMv8 - Will support 64-bit
 
 [XINU stands for Xinu Is Not Unix ](http://www.xinu.cs.purdue.edu/)
 
+[Baking Pi - Operating Systems Development](http://www.cl.cam.ac.uk/freshers/raspberrypi/tutorials/os/)
 
 ### #Embedded Languages
 [GitHub: Embedded Lua](https://github.com/elua/elua)
