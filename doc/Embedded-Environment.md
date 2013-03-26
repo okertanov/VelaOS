@@ -309,3 +309,21 @@ ARMv8 - Will support 64-bit
 
 [Low Cost Development Boards](http://www.linaro.org/engineering/getting-started/low-cost-development-boards/)
 
+### LeopardBoard & embedded ui libraries links
+[Beginners guide for Leopard Board DM365](http://processors.wiki.ti.com/index.php/Beginners_guide_for_Leopard_Board_DM365)  
+[Category:DaVinci](http://processors.wiki.ti.com/index.php/Category:DaVinci)  
+[Davinci Multimedia Application Interface](http://processors.wiki.ti.com/index.php/Davinci_Multimedia_Application_Interface)  
+[MSP430 LaunchPad (MSP-EXP430G2)](http://processors.wiki.ti.com/index.php/MSP430_LaunchPad_(MSP-EXP430G2))  
+[designsomething.org/leopardboard](http://designsomething.org/leopardboard/default.aspx)  
+[www.linux-davinci.info](http://www.linux-davinci.info/)  
+[C/PEG (Portable Embedded GUI)](http://www.lynuxworks.com/partners/show_product.php?ID=280)  
+[DM368 Based Products](http://www.ridgerun.com/index.php/products.html?id=82)  
+[u8glib Universal Graphics Library for 8 Bit Embedded Systems ](http://code.google.com/p/u8glib/wiki/tpictureloop)  
+[StellarisWare® Graphics Library Standalone Package](http://www.ti.com/tool/sw-grl)  
+[Compact Graphics Code](http://www.embedded.com/design/configurable-systems/4023880/Compact-Graphics-Code)  
+[Choosing a GUI Library for Your Embedded Device](http://www.linuxjournal.com/article/9403)  
+[MiniGUI](http://www.minigui.org/en/download/)  
+[stackoverflow: graphics-library-for-embedded-systems-without-linux](http://stackoverflow.com/questions/366278/graphics-library-for-embedded-systems-without-linux)  
+[unicap provides a uniform interface to video capture devices.](http://www.unicap-imaging.org/)  
+[TinyPTC - A small and easy to use framebuffer graphics library](http://sourceforge.net/projects/tinyptc/files/?source=navbar)  
+
