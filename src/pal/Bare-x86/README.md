@@ -42,6 +42,7 @@ Links
 [Multiboot Standard Version 0.6](http://www.uruk.org/orig-grub/boot-proposal.html)  
 [Lisp-based OSes](http://linuxfinances.info/info/lisposes.html)  
 [Your own GNU operating system](http://gownos.blogspot.com/)  
+[Operating System Development Series](http://www.brokenthorn.com/Resources/OSDevIndex.html)  
 
 ### osdev.org
 [Projects](http://wiki.osdev.org/Projects)  
